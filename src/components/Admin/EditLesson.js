@@ -1,14 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import ReactQuill from 'react-quill';
+import ReactQuill, {Quill} from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
 const EditLesson = ({show,handleClose,lesson}) => {
     const [titleState, setTitle] = useState(`${lesson.title}`);
     const [materialState, setMaterialState] = useState(`${lesson.material}`);
     const [fullscreen, setFullscreen] = useState(true);
+
+    useEffect(() => {
+        const ColorPicker = Quill.import('ui/color-picker');
+        Quill.register(ColorPicker, true);
+      }, []);
+
+    const toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+        [{ 'header': 1 }, { 'header': 2 }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
+        [{ 'direction': 'rtl' }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+        ['link', 'image', 'video'],
+        ['clean']
+      ];
 
     const onChangeHandler = (e,setValue) =>{
         //console.log(e.target.value)
@@ -63,6 +86,7 @@ const EditLesson = ({show,handleClose,lesson}) => {
                 theme = "snow"
                 value={materialState}
                 onChange={setMaterialState}
+                modules={{ toolbar: toolbarOptions }}
                 />
         </Form.Group>
         <Button variant="warning" size="lg" type='submit'>

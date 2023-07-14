@@ -1,0 +1,20 @@
+.course-background{
+    background-color: white;
+    min-height: 300px;
+    border: 10px white solid;
+    border-radius: 2em;
+    margin-bottom: 30px;
+    margin-top:30px
+}
+
+.lesson-material{
+    background-color: white;
+    min-height: 500px;
+    border-radius: 1em;
+    border: 10px white solid
+}
+
+.quill-container .ql-editor{
+    min-height: 300px;
+}
+

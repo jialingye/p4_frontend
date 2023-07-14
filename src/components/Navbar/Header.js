@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <Navbar bg="dark" data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="/">Academy</Navbar.Brand>
+          <Navbar.Brand href="/" style={{fontFamily: "'Raleway'", fontSize:'25px'}}>AIcademy</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">Courses</Nav.Link>
             <Nav.Link href="#features">Collection</Nav.Link>

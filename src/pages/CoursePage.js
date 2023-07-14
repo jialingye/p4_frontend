@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import { NavLink, useParams } from 'react-router-dom'
+import './Course.css'
+import { Badge, ListGroup, ListGroupItem } from 'react-bootstrap'
 
 const CoursePage = () => {
     let {id} = useParams()
@@ -21,17 +23,25 @@ const CoursePage = () => {
   return (
     <div>{course? (
     <Container>
-     <h2>{course.title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: course.description }}></div>
-          <h3>Lessons:</h3>
-          <ul>
+     <div style={{marginTop:'30px'}}>
+     <h1 style={{color:'beige', fontFamily: "'Bebas Neue'"}}>{course.title}</h1>
+     <Badge bg="info">{course.tag}</Badge>
+     <hr></hr>
+     <div className='course-background'>
+     
+     <div dangerouslySetInnerHTML={{ __html: course.description }}></div>
+     </div>
+            <hr></hr>
+          <h3 style={{color:'beige', fontFamily: "'Bebas Neue'"}}>Lessons:</h3>
+          <ListGroup >
             {course.lessons.map((lesson) => (
                 
-              <NavLink to={`/courses/${course.id}/lessons/${lesson.id}`}>
-              <li key={lesson.id}>{lesson.title}</li>
+              <NavLink to={`/courses/${course.id}/lessons/${lesson.id}`} style={{textDecoration:'none'}}>
+              <ListGroup.Item action key={lesson.id} style={{margin:'10px', borderRadius: '1em'}}>{lesson.title}</ListGroup.Item>
               </NavLink>
             ))}
-          </ul>
+          </ListGroup>
+          </div>
     </Container>
     ):(
         <h2>Loading</h2>

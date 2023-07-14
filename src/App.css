@@ -1,0 +1,12 @@
+.App {
+    background-color: #35353a;
+    min-height:100vh;
+    background-position: center;
+    width:100vw;
+}
+
+.main{
+   background-color: #35353a;
+   height:100%;
+   width: 100%; 
+}

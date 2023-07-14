@@ -27,7 +27,7 @@ function App() {
       <header>
       <Header/>
       </header>
-      <main>
+      <main className='main'>
         {routes}
       </main>
     </div>

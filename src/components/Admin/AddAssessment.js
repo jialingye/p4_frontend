@@ -26,12 +26,12 @@ const AddAssessment = ({show, handleClose, lesson}) => {
             body: JSON.stringify(addQuestion),
         };
 
-    
+        console.log(lesson.id, addQuestion)
        //const responseData = await fetch(`http://localhost:4000/user/${profile._id}`, options);
         const responseData = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/assessments/new/`, options);
 
         const addQuestionData = await responseData.json();
-        // console.log(addLessonData);
+        console.log(addQuestionData);
         handleClose();
         window.location.reload();
     }

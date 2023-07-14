@@ -2,46 +2,66 @@ import React, {useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/esm/Container';
-import ReactQuill from 'react-quill';
+import ReactQuill, {Quill} from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
+import './Course.css'
 
 const CourseCreate = () => {
-const navigate= useNavigate();
-const [titleState, setTitleState] = useState("")
-const [tagState, setTagState] = useState("")
-const [descriptionState, setDescriptionState] = useState("")
+    const ColorPicker = Quill.import('ui/color-picker');
+    Quill.register(ColorPicker, true);
+    const toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+        [{ 'header': 1 }, { 'header': 2 }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
+        [{ 'direction': 'rtl' }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+        ['link', 'image', 'video'],
+        ['clean']
+      ];
 
-const onChangeHandler = (e, setValue) => {
-    setValue(e.target.value);
-  }
-const handleSubmit = async(event) => {
-    event.preventDefault();
-    const createCourse= {
-        instructor: 1,
-        title:titleState,
-        tag:tagState,
-        description: descriptionState,
+    const navigate= useNavigate();
+    const [titleState, setTitleState] = useState("")
+    const [tagState, setTagState] = useState("")
+    const [descriptionState, setDescriptionState] = useState("")
+
+    const onChangeHandler = (e, setValue) => {
+        setValue(e.target.value);
     }
+    const handleSubmit = async(event) => {
+        event.preventDefault();
+        const createCourse= {
+            instructor: 1,
+            title:titleState,
+            tag:tagState,
+            description: descriptionState,
+        }
 
-    const options = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(createCourse)
-    };
-    const response = await fetch(`http://127.0.0.1:8000/courses/new/`, options);
-    const data= await response.json();
-    console.log(data)
-    navigate(`/courses/${data.id}/edit`)
-}
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(createCourse)
+        };
+        const response = await fetch(`http://127.0.0.1:8000/courses/new/`, options);
+        const data= await response.json();
+        console.log(data)
+        navigate(`/courses/${data.id}/edit`)
+    }
 
   return (
     <Container>
         <Form onSubmit = {handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Title</Form.Label>
+                    <Form.Label style={{color:'white'}}>Title</Form.Label>
                     <Form.Control 
                     type="text" 
                     rows={3}
@@ -49,7 +69,7 @@ const handleSubmit = async(event) => {
                     onChange = {(e) => onChangeHandler(e, setTitleState)} />
                 </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Categories</Form.Label>
+                <Form.Label style={{color:'white'}}>Categories</Form.Label>
                 <Form.Control 
                     as="select" 
                     defaultValue="development"
@@ -70,14 +90,18 @@ const handleSubmit = async(event) => {
                     <option value="Teaching & Academy">Teaching & Academy</option>
                 </Form.Control>
             </Form.Group>
-
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Description</Form.Label>
+            <Form.Label style={{color:'white'}}>Courses Instruction</Form.Label>
+                <div style={{backgroundColor:'white'}}>
                 <ReactQuill
                     theme = "snow"
                     value={descriptionState}
                     onChange={setDescriptionState}
+                    modules={{ toolbar: toolbarOptions }}
+                    style={{minHeight:'300px'}}
+                    className='quill-container'
                     />
+                </div>
             </Form.Group>
             <div className="mb-2">
                 <Button variant="secondary" size="lg" type = "submit">

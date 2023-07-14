@@ -1,28 +1,27 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
-
+import './ListItem.css'
 const ListItem = ({course, key}) => {
   return (
-    <div key= {key}>
-         <NavLink to={`/courses/${course.id}`}>
+   
          <Card
-          bg='light'
-          key='light'
+          key= {key}
           text={'black'}
-          style={{ width: '18rem' }}
-          className="mb-2"
+          className = {`mb-2 list-item ${course.tag}`}
         >
-          <Card.Header>{course.tag}</Card.Header>
+          <Card.Header className={`${course.tag}`}>{course.tag}</Card.Header>
           <Card.Body>
-            <Card.Title> {course.title} </Card.Title>
+          <NavLink to={`/courses/${course.id}` } style={{textDecoration:"none"}} >
+            <Card.Title className={`${course.tag}`} style={{textDecoration:"none"}}> {course.title} </Card.Title>
+            </NavLink>
             <Card.Text>
               {course.discription}
             </Card.Text>
           </Card.Body>
+          <Card.Footer className={`${course.tag}`}>{course.lessons.length} Lessons</Card.Footer>
         </Card>
-          </NavLink>
-    </div>
+    
    
   )
 }

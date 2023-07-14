@@ -2,10 +2,29 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import ReactQuill from 'react-quill';
+import ReactQuill, {Quill} from 'react-quill';
 
 
 const EditCourse = ({show,handleClose,course}) => {
+    const ColorPicker = Quill.import('ui/color-picker');
+    Quill.register(ColorPicker, true);
+    const toolbarOptions = [
+        ['bold', 'italic', 'underline', 'strike'],
+        ['blockquote', 'code-block'],
+        [{ 'header': 1 }, { 'header': 2 }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],
+        [{ 'indent': '-1' }, { 'indent': '+1' }],
+        [{ 'direction': 'rtl' }],
+        [{ 'size': ['small', false, 'large', 'huge'] }],
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+        ['link', 'image', 'video'],
+        ['clean']
+      ];
+
     const [titleState, setTitle] = useState(`${course.title}`);
     const [tagState, setTagState] = useState(`${course.tag}`);
     const [descriptionState, setDescriptionState] = useState(`${course.description}`);
@@ -90,6 +109,7 @@ const EditCourse = ({show,handleClose,course}) => {
                     theme = "snow"
                     value={descriptionState}
                     onChange={setDescriptionState}
+                    modules={{ toolbar: toolbarOptions }}
                     />
             </Form.Group>
             <Button variant="warning" size="lg" type='submit'>

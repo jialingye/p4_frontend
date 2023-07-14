@@ -34,8 +34,7 @@ const LessonComp = ({course}) => {
             <Button
                 style={{marginBottom:"10px"}}
                 variant="outline-secondary" 
-                size="lg"
-                show = {editModalState===index? 'true':'false'}
+                size="sm"
                 onClick = {()=>handleEditModalOpen(index)}
                 >
                 Edit Lesson
@@ -44,7 +43,7 @@ const LessonComp = ({course}) => {
                 <>
                 {console.log(editModalState)}
                 <EditLesson
-                show = {editModalState}
+                show = {editModalState===index}
                 handleClose = {handleEditModalClose}
                 lesson ={lesson}/>
                 </>
@@ -52,8 +51,7 @@ const LessonComp = ({course}) => {
                <Button
                 style={{marginBottom:"10px"}}
                 variant="outline-secondary" 
-                size="lg"
-                show = {addModalState===index? 'true':'false'}
+                size="sm"
                 onClick = {()=>handleAddModalOpen(index)}
                 >
                 Add Assessment
@@ -62,7 +60,7 @@ const LessonComp = ({course}) => {
                 <>
                 {console.log(addModalState)}
                 <AddAssessment
-                show = {addModalState}
+                show = {addModalState===index}
                 handleClose = {handleAddModalClose}
                 lesson ={lesson}/>
                 </>

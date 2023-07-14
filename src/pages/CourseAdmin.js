@@ -4,6 +4,7 @@ import { NavLink, useParams } from 'react-router-dom'
 import EditCourse from '../components/Admin/EditCourse'
 import AddLesson from '../components/Admin/AddLesson'
 import LessonComp from '../components/Admin/LessonComp'
+import './Course.css'
 
 const CourseAdmin = () => {
 
@@ -36,34 +37,45 @@ const CourseAdmin = () => {
   return (
    <div>{course? (
     <Container>
-     <h2>{course.title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: course.description }}></div>
-            <Button
-      style={{marginBottom:"10px"}}
-      variant="outline-secondary" 
-      size="lg"
-      onClick = {handleEditModalOpen}
-      >
-            Edit Course
-    </Button>
-    <EditCourse
-        show = {editModalState}
-        handleClose = {handleEditModalClose}
-        course ={course}/>
-    <Button
-      style={{marginBottom:"10px"}}
-      variant="outline-secondary" 
-      size="lg"
-      onClick = {handleAddLessonOpen}
-      >
-            Add Lesson
-    </Button>
-    <AddLesson
-        show = {addLessonState}
-        handleClose={handleAddLessonClose}
-        course={course}/>
+        <div style={{marginTop:'30px', marginBottom:'30px'}}>
+            <h2 style={{color:'white', fontFamily: "'Bebas Neue'"}}>
+                {course.title}
+            </h2>
+        </div>
 
-          <h3>Lessons:</h3>
+        <div>
+            <Button
+            style={{marginBottom:"10px"}}
+            variant="outline-warning" 
+            size="lg"
+            onClick = {handleEditModalOpen}
+            >
+                    Edit Course
+            </Button>
+            <Button
+            style={{marginBottom:"10px"}}
+            variant="outline-primary" 
+            size="lg"
+            onClick = {handleAddLessonOpen}
+            >
+                    Add Lesson
+            </Button>
+        </div>
+        <div className="course-background">
+            <div dangerouslySetInnerHTML={{ __html: course.description }}></div>
+        </div>
+
+            <EditCourse
+                show = {editModalState}
+                handleClose = {handleEditModalClose}
+                course ={course}/>
+            <AddLesson
+                show = {addLessonState}
+                handleClose={handleAddLessonClose}
+                course={course}/>
+
+          <h3 style={{color:'white', fontFamily: "'Bebas Neue'"}}>Lessons:</h3>
+
           <ul>
               <LessonComp course= {course}/>
           </ul>
