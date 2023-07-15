@@ -5,7 +5,7 @@ import { Row } from 'react-bootstrap'
 
 const CourseList = () => {
     let [courses, setCourses] = useState([])
-
+    let coursesData
     useEffect(() => {
         getCourses()
     }, [])
@@ -16,14 +16,15 @@ const CourseList = () => {
         console.log('DATA', data)
         setCourses(data)
     }
+    if(courses){
+         coursesData = courses.map((course, index) => (
+        <ListItem key= {index} course={course}/>
+    ))
+}
   return (
     <Container>   
         <Row xs={1} md={4} style={{display:'flex', flexWrap:'wrap'}}>
-        {courses.map((course, index) => (
-            
-            <ListItem key= {index} course={course}/>
-           
-        ))}
+        {coursesData}
         </Row>
     </Container>
   )

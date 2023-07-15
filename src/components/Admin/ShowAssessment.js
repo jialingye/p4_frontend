@@ -16,7 +16,7 @@ const ShowAssessment = ({course, lesson}) => {
         return (
         <Accordion key={index}>
             <Accordion.Item eventKey={index.toString()} >
-            <Accordion.Header>Assessment {index+1}</Accordion.Header>
+            <Accordion.Header>Assessment {index+1} </Accordion.Header>
             <Accordion.Body>
                 <div dangerouslySetInnerHTML={{ __html: assessment.question }}></div>
                 <Button

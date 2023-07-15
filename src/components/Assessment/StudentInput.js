@@ -7,6 +7,7 @@ const StudentInput = ({assessment}) => {
   const [gptState, setGptState]=useState('');
   const [previousState, setPreviousState] = useState(null);
 
+
   const onChangeHandler = (e, setValue) => {
     setValue(e.target.value);
   }
@@ -36,9 +37,10 @@ const StudentInput = ({assessment}) => {
     const scoreRegex = /Score:\s+(\d+)/;
     const scoreMatch = answer.match(scoreRegex);
     const score = scoreMatch ? parseInt(scoreMatch[1]) : null;
-
+    
+    const studentId = 1
     const createInput = {
-        student: 1,
+        student: studentId,
         assessment: assessment.id,
         input: inputState,
         score: score, 
@@ -58,13 +60,16 @@ const StudentInput = ({assessment}) => {
         },
         body: JSON.stringify(createInput)
     };
-    if(assessment.scores.length===0) {
+
+    const studentScores = assessment.scores.filter((score) => score.student === studentId);
+
+    if(studentScores.length===0) {
         const response = await fetch(`http://127.0.0.1:8000/assessments/${assessment.id}/score/`, options);
         const data= await response.json();
         console.log(data)
         window.location.reload();
     } else {
-        const previousScoreId= assessment.scores[0].id
+        const previousScoreId= studentScores[0].id;
         const updateOptions = {
             method: 'PUT',
             headers: {
@@ -77,22 +82,27 @@ const StudentInput = ({assessment}) => {
             console.log(data);
             window.location.reload();
     }
-    
+
   }
+  const studentId = 1
+  const studentScores = assessment.scores.filter((score) => score.student === studentId);
+  const studentAns = studentScores.map((score)=> (
+    <div
+      key={score.id}
+      style={{ boxShadow: '0 0 5px', borderRadius: '1em', padding: '5px' }}
+    >
+      <ul style={{ listStyleType: 'none', padding: 0 }}>
+        <li>Your Answer: {score.input}</li>
+        <br></br>
+        <li>{score.explanation}</li>
+      </ul>
+    </div>
+  ))
+
   return (
     <div>
         <div>
-            {assessment.scores.map((score) => (
-                <>
-                <div key={score.id} style={{boxShadow:'0 0 5px', borderRadius:'1em', padding:'5px'}}>
-                    <ul style={{ listStyleType: 'none', padding: 0 }}>
-                    <li>Your Answer: {score.input}</li>
-                    <br></br>
-                    <li>{score.explanation}</li>
-                    </ul>
-                </div>
-                </>
-                ))}
+           {studentAns}
         </div>
         
         <Form onSubmit = {checkScore}>
@@ -105,7 +115,7 @@ const StudentInput = ({assessment}) => {
                 onChange = {(e) => onChangeHandler(e, setInputState)} />
             </Form.Group>
             <div className="mb-2">
-                <Button variant="secondary" size="sm" type = "submit">
+                <Button variant="warning" size="sm" type = "submit">
                     AI Score
                 </Button>
             </div>
@@ -116,8 +126,10 @@ const StudentInput = ({assessment}) => {
         <div style={{backgroundColor:'lightgray', border:'5px lightgray solid', borderRadius:'1em'}}>
             <div> {gptState} </div>
             <div className='d-grid'>
-            <Button variant="secondary" size="sm" onClick={handleSubmit}>
-            {assessment.scores.length ===0 ? 'Submit':'Resubmit'}
+            <Button variant="warning" size="sm" onClick={handleSubmit}>
+            {assessment.scores.filter((score) => score.student === studentId).length === 0
+                ? 'Submit'
+                : 'Resubmit'}
             </Button>
             </div>
         </div>):

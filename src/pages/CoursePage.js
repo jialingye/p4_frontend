@@ -13,7 +13,7 @@ const CoursePage = () => {
     }, [])
 
     let getCourse = async()=> {
-        let response = await fetch(`/courses/${id}`)
+        let response = await fetch(`/courses/${id}/`)
         let data = await response.json();
         console.log(data)
         setCourse(data)
@@ -24,7 +24,7 @@ const CoursePage = () => {
     <div>{course? (
     <Container>
      <div style={{marginTop:'30px'}}>
-     <h1 style={{color:'beige', fontFamily: "'Bebas Neue'"}}>{course.title}</h1>
+     <h1 style={{color:'beige', fontFamily: "'Kanit'"}}>{course.title}</h1>
      <Badge bg="info">{course.tag}</Badge>
      <hr></hr>
      <div className='course-background'>
