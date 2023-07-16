@@ -1,12 +1,19 @@
 import React, {useState, useEffect} from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import { NavLink, useParams } from 'react-router-dom'
+import Offcanvas from 'react-bootstrap/Offcanvas';  
 import './Course.css'
-import { Badge, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Badge, Button, Col, ListGroup, Row } from 'react-bootstrap'
+
 
 const CoursePage = () => {
     let {id} = useParams()
     let [course, setCourse] = useState(null)
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(()=>{
         getCourse()
@@ -24,15 +31,31 @@ const CoursePage = () => {
     <div>{course? (
     <Container>
      <div style={{marginTop:'30px'}}>
-     <h1 style={{color:'beige', fontFamily: "'Kanit'"}}>{course.title}</h1>
-     <Badge bg="info">{course.tag}</Badge>
+      <Row>
+        <Col sm={8} lg={8}>
+          <h1 style={{color:'white', fontFamily: "'Roboto'"}}>{course.title}</h1>
+        </Col>
+        <Col sm={4} lg={4} style={{display:'flex', flexDirection:'column', justifyContent:'space-around'}}>
+          <Button variant="outline-success" onClick={handleShow}>
+            Lessons
+          </Button>
+          <br></br>
+          <Button variant="outline-success" onClick={handleShow}>
+            Enroll
+          </Button>
+        </Col>
+      </Row>
+      <Badge bg="dark" style={{color:'#98bf64', border:'2px solid #98bf64', borderRadius:'1em'}}>{course.tag}</Badge>
      <hr></hr>
      <div className='course-background'>
-     
      <div dangerouslySetInnerHTML={{ __html: course.description }}></div>
      </div>
             <hr></hr>
-          <h3 style={{color:'beige', fontFamily: "'Bebas Neue'"}}>Lessons:</h3>
+            <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title style={{color:'#98bf64'}}>Lessons</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
           <ListGroup >
             {course.lessons.map((lesson) => (
                 
@@ -41,6 +64,9 @@ const CoursePage = () => {
               </NavLink>
             ))}
           </ListGroup>
+        </Offcanvas.Body>
+      </Offcanvas>
+          
           </div>
     </Container>
     ):(

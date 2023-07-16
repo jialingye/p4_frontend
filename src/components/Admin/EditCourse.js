@@ -3,9 +3,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import ReactQuill, {Quill} from 'react-quill';
+import { useNavigate } from 'react-router-dom';
 
 
 const EditCourse = ({show,handleClose,course}) => {
+    const navigate = useNavigate();
+    
     const ColorPicker = Quill.import('ui/color-picker');
     Quill.register(ColorPicker, true);
     const toolbarOptions = [
@@ -62,6 +65,34 @@ const EditCourse = ({show,handleClose,course}) => {
         window.location.reload();
     }
 
+    const onDeleteHandler = async (event) => {
+      event.preventDefault();
+      console.log("Delete review with ", course.id)
+  
+      try {
+      const options = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+      }
+      };
+      const response = await fetch(`http://127.0.0.1:8000/courses/${course.id}/delete/`, options);
+
+      if(response.status === 204){
+          console.log(response.status);
+          navigate(`/`)
+      } else if (response.status === 404) {
+          console.log('course not found')
+      } else {
+          const errorData = await response.json();
+          console.error("Error deleting course:", errorData);
+      }
+     
+      } catch(error) {
+          console.error('Error deleting course', error)
+      }       
+    };
+
 
   return (
     <div>
@@ -112,9 +143,8 @@ const EditCourse = ({show,handleClose,course}) => {
                     modules={{ toolbar: toolbarOptions }}
                     />
             </Form.Group>
-            <Button variant="warning" size="lg" type='submit'>
-           Update Profile
-          </Button> 
+            <Button variant="warning" size="lg" type='submit'>  Update Profile </Button> 
+            <Button variant="danger" size="lg" type='submit' onClick ={onDeleteHandler}>Delete</Button> 
             </Form>
         </Modal.Body>
         <Modal.Footer>

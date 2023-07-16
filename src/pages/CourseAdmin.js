@@ -38,14 +38,14 @@ const CourseAdmin = () => {
    <div>{course? (
     <Container>
         <div style={{marginTop:'30px', marginBottom:'30px'}}>
-            <h2 style={{color:'white', fontFamily: "'Bebas Neue'"}}>
+            <h2 style={{color:'white', fontFamily: "'Roboto'"}}>
                 {course.title}
             </h2>
         </div>
 
         <div>
             <Button
-            style={{marginBottom:"10px"}}
+            style={{marginBottom:"10px", marginRight:'20px'}}
             variant="outline-warning" 
             size="lg"
             onClick = {handleEditModalOpen}
@@ -74,7 +74,7 @@ const CourseAdmin = () => {
                 handleClose={handleAddLessonClose}
                 course={course}/>
 
-          <h3 style={{color:'white', fontFamily: "'Bebas Neue'"}}>Lessons:</h3>
+          <h3 style={{color:'white', fontFamily: "'Roboto'"}}>Lessons:</h3>
 
           <ul>
               <LessonComp course= {course}/>

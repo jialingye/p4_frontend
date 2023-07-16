@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 
-const StudentInput = ({assessment}) => {
+const StudentInput = ({assessment, studentId}) => {
   const [inputState, setInputState]=useState('');
   const [gptState, setGptState]=useState('');
   const [previousState, setPreviousState] = useState(null);
@@ -38,7 +38,6 @@ const StudentInput = ({assessment}) => {
     const scoreMatch = answer.match(scoreRegex);
     const score = scoreMatch ? parseInt(scoreMatch[1]) : null;
     
-    const studentId = 1
     const createInput = {
         student: studentId,
         assessment: assessment.id,
@@ -84,8 +83,9 @@ const StudentInput = ({assessment}) => {
     }
 
   }
-  const studentId = 1
+
   const studentScores = assessment.scores.filter((score) => score.student === studentId);
+  console.log("🥸",studentScores)
   const studentAns = studentScores.map((score)=> (
     <div
       key={score.id}

@@ -86,6 +86,7 @@ function App() {
       <main className='main'>
         {routes}
       </main>
+      <footer style={{textAlign:'center', color:'beige'}}>My Application copyright 2023 Jade Ye</footer>
     </div>
     </AuthContext.Provider>
 

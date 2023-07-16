@@ -16,6 +16,7 @@ const LessonPage = () => {
     let [lesson, setLesson] = useState(null)
     let progress, totalScore,totalValidScore
     
+    
     useEffect(()=>{
         getLesson()
     }, [])
@@ -34,13 +35,16 @@ const LessonPage = () => {
     totalValidScore = 0;
 
     for (const assessment of lesson.assessments){
+      
         const studentScores = assessment.scores.filter((score)=>score.student===studentId)
-        if (studentScores) {
+        console.log("😍", studentScores)
+        if (studentScores.length===0) {
+            totalValidScore += 0
+            validScoreCount += 0
+        } else {
             const validScores= studentScores.filter((score)=>score.score>5);
             totalValidScore += validScores[0].score
             validScoreCount += validScores.length;
-        } else {
-            
         }
         
         
@@ -55,25 +59,25 @@ const LessonPage = () => {
             <Container fluid style={{width:'90%'}}>
                 
                 <Row style={{marginTop:'30px'}}>
-                    <Col lg={8} sm={8}>
-                        <h1 style={{color:'beige', fontFamily: "'Kanit'"}}>{lesson.title}</h1>
-                        <div className='lesson-material'>
+                    <Col lg={8} sm={8} style={{backgroundColor:'white', borderRadius:'1em', marginTop:'5px', paddingBottom:'30px'}}>
+                        <h1 style={{color:'Black', fontFamily: "'Roboto'", marginTop:'10px', marginButtom:'10px'}}>{lesson.title}</h1>
+                        <div className='lesson-material' style={{boxShadow:"0 0 5px #98bf64"}}>
                             <div dangerouslySetInnerHTML={{ __html: lesson.material }}></div>
                         </div>
                     </Col>
                     <Col lg={4} sm={4}>
-                    <div style={{marginBottom:'10px'}}>
-                    <h5 style={{color:'beige', fontFamily: "'Kanit'"}}>Scores: {totalValidScore}/{totalScore}</h5>
-                    <ProgressBar striped variant="success" now={progress} />
-                    </div>
+                        <div style={{marginBottom:'10px'}}>
+                        <h5 style={{color:'White', fontFamily: "'Roboto'"}}>Scores: {totalValidScore}/{totalScore}</h5>
+                        <ProgressBar striped variant="success" now={progress} />
+                        </div>
                         <Accordion>
                             {lesson.assessments.map((assessment, index) => (
                             <>
                             <Accordion.Item eventKey={assessment.id}>
-                            <Accordion.Header>Question {index+1} {assessment.scores[0].score >=5 ? tickmark: <></>}</Accordion.Header>
+                            <Accordion.Header>Question {index+1} {assessment.scores.filter((score)=>score.student===studentId)[0]?.score >=5 ? tickmark: <></>}</Accordion.Header>
                             <Accordion.Body> 
                             <div dangerouslySetInnerHTML={{ __html: assessment.question }}></div>
-                                <StudentInput assessment={assessment}/>
+                                <StudentInput assessment={assessment} studentId={studentId}/>
                                 </Accordion.Body>
                             </Accordion.Item>
                             </>

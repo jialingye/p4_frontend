@@ -2,7 +2,7 @@
     background-color: white;
     min-height: 300px;
     border: 10px white solid;
-    border-radius: 2em;
+    border-radius: 1em;
     margin-bottom: 30px;
     margin-top:30px
 }
@@ -17,4 +17,5 @@
 .quill-container .ql-editor{
     min-height: 300px;
 }
+
 

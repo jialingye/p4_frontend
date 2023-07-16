@@ -63,8 +63,37 @@ const EditLesson = ({show,handleClose,lesson}) => {
         window.location.reload();
     }
 
+    const onDeleteHandler = async (event) => {
+        event.preventDefault();
+        console.log("Delete review with ", lesson.id)
+    
+        try {
+        const options = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+        }
+        };
+        const response = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/delete/`, options);
+
+        if(response.status === 204){
+            console.log(response.status);
+            window.location.reload();
+        } else if (response.status === 404) {
+            console.log('lesson not found')
+        } else{
+            const errorData = await response.json();
+            console.error("Error deleting lesson:", errorData);
+        }
+       
+        } catch(error) {
+            console.error('Error deleting lesson', error)
+        }       
+      };
+
   return (
-    <div><Modal  fullscreen={fullscreen} show={show} onHide={handleClose}>
+    <div>
+    <Modal  fullscreen={fullscreen} show={show} onHide={handleClose}>
     <Modal.Header closeButton onClick={()=>handleClose()}>
       <Modal.Title>Edit Lesson</Modal.Title>
     </Modal.Header>
@@ -91,7 +120,8 @@ const EditLesson = ({show,handleClose,lesson}) => {
         </Form.Group>
         <Button variant="warning" size="lg" type='submit'>
        Update Lesson
-      </Button> 
+      </Button>
+      <Button variant="danger" size="lg" type='submit' onClick ={onDeleteHandler}>Delete</Button> 
         </Form>
     </Modal.Body>
     <Modal.Footer>
