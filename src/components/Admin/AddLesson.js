@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Col, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import ReactQuill, {Quill} from 'react-quill';
+
 
 const AddLesson = ({show,handleClose,course}) => {
     const ColorPicker = Quill.import('ui/color-picker');
@@ -31,7 +33,7 @@ const AddLesson = ({show,handleClose,course}) => {
     const [fullscreen, setFullscreen] = useState(true);
  
     useEffect(()=> {
-        setTitle( `Lesson ${numberState}. ${partialState}`);
+        setTitle( `Lesson ${numberState}: ${partialState}`);
     }, [numberState,partialState]);
 
     const onChangeHandler = (e,setValue) =>{
@@ -74,26 +76,32 @@ const AddLesson = ({show,handleClose,course}) => {
         <Modal.Body>
           <Form onSubmit ={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Title</Form.Label>
-              Lesson
-              <Form.Control
+            <Form.Label>Title</Form.Label>
+              <Row>
+                <Col lg={2}>
+                <Form.Control
                 type="number"
-                placeholder=""
+                placeholder="Lesson 1"
                 autoFocus
                 value = {numberState}
                 onChange ={(e) => onChangeHandler(e,setNumber)}
               />
-              .
-              <Form.Control
+                </Col>
+                :
+                <Col lg={9}>
+                <Form.Control
                 type="text"
                 placeholder="Title"
                 autoFocus
                 value = {partialState}
                 onChange ={(e) => onChangeHandler(e,setPartial)}
               />
+                </Col>
+              </Row>
+              
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Lesson</Form.Label>
+                <Form.Label></Form.Label>
                 <ReactQuill
                     theme = "snow"
                     value={materialState}

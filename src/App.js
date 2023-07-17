@@ -15,6 +15,7 @@ import Dashboard from './pages/Dashboard';
 import PrivateRoute from './utility/PrivateRoute';
 import { AuthContext } from './context/AuthContext';
 import { useEffect, useState } from 'react';
+import Collection from './pages/Collection';
 
 
 let routes = (
@@ -24,6 +25,7 @@ let routes = (
     <Route path="/courses/:courseId/lessons/:lessonId" element={<LessonPage/>}/>
     <Route path="/courses/new" element={<CourseCreate/>}/>
     <Route path="/courses/:id/edit" element={<CourseAdmin/>}/>
+    <Route path="/collections" element={<Collection/>}/>
     <Route path="/dashboard" element={<Dashboard/>}/>
   </Routes>
 )

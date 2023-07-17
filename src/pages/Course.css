@@ -18,4 +18,27 @@
     min-height: 300px;
 }
 
+.course-button {
+    border-color: #98bf64;
+    color: #98bf64;
+}
 
+.course-button:hover {
+    background-color: #98bf64;
+    border-color: #98bf64;
+}
+
+.save-button {
+    background-color: #98bf64;
+    margin-left: 10px;
+    border: #98bf64 1px solid;
+    border-radius: 1em;
+}
+
+.dashboard-outline {
+    background-color: white;
+    height: 80vh;
+    border: '1px solid yellow'
+
+
+}
