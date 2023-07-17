@@ -1,15 +1,22 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import Container from 'react-bootstrap/esm/Container'
 import { NavLink, useParams } from 'react-router-dom'
 import Offcanvas from 'react-bootstrap/Offcanvas';  
 import './Course.css'
 import { Badge, Button, Col, ListGroup, Row } from 'react-bootstrap'
+import { AuthContext } from '../context/AuthContext'
+import LessonBar from '../components/Listing/LessonBar';
 
 
 const CoursePage = () => {
     let {id} = useParams()
+    const auth= useContext(AuthContext)
     let [course, setCourse] = useState(null)
-
+    let [enrollState, setEnrollState] = useState (false)
+    let [errorState, setErrorState] = useState(null)
+    let [progress, setProgress] = useState(0)
+    let [enrollCount, setEnrollCount] = useState(0)
+    
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -17,16 +24,84 @@ const CoursePage = () => {
 
     useEffect(()=>{
         getCourse()
-    }, [])
+        
+    }, [id, auth.userId])
 
     let getCourse = async()=> {
         let response = await fetch(`/courses/${id}/`)
         let data = await response.json();
         console.log(data)
         setCourse(data)
+        setEnrollState(data.students.some((student)=>student===auth.userId))
+        // setProgress(data.get_course_progress(auth.userId))
+        // setEnrollCount(data.enrollment_count())
     }
 
-  
+
+    let handleEnroll = async(event)=>{
+      event.preventDefault();
+        const asso= {
+            asso: 'add'
+        }
+        try{
+
+          const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(asso)
+        };
+        const response = await fetch(`http://127.0.0.1:8000/courses/${id}/students/${auth.userId}/`, options);
+        const data= await response.json();
+        
+        if(response.status !== 200){
+          setErrorState('Please log in to enroll course')
+        } else {
+          setCourse((prevCourse) => ({
+            ...prevCourse,
+            students: [...prevCourse.students, auth.userId]
+          }));
+          setEnrollState(true)
+        }
+        
+        
+        } catch(error) {
+          console.error('error', error)
+          setErrorState('Please log in to enroll course')
+          console.log(errorState)
+        }
+        
+    }
+    
+    let handleUnenroll = async(event)=>{
+      event.preventDefault();
+        const asso= {
+            asso: 'remove'
+        }
+        try {
+          const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(asso)
+        };
+        const response = await fetch(`http://127.0.0.1:8000/courses/${id}/students/${auth.userId}/`, options);
+        const data= await response.json();
+        console.log(data)
+        setCourse((prevCourse) => ({
+          ...prevCourse,
+          students: [...prevCourse.students, auth.userId]
+        }));
+        setEnrollState(false)
+        } catch (error){
+          console.error('error', error)
+        }
+        
+    }
+    
+
   return (
     <div>{course? (
     <Container>
@@ -40,9 +115,13 @@ const CoursePage = () => {
             Lessons
           </Button>
           <br></br>
-          <Button variant="outline-success" onClick={handleShow}>
-            Enroll
-          </Button>
+          {enrollState?
+          (<Button variant="outline-success" onClick={handleUnenroll}>
+          Unenroll
+        </Button>):(<Button variant="outline-success" onClick={handleEnroll}>
+          Enroll
+        </Button>)}
+         {errorState && <div style={{color:'red'}}>{errorState}</div>}
         </Col>
       </Row>
       <Badge bg="dark" style={{color:'#98bf64', border:'2px solid #98bf64', borderRadius:'1em'}}>{course.tag}</Badge>
@@ -58,9 +137,12 @@ const CoursePage = () => {
         <Offcanvas.Body>
           <ListGroup >
             {course.lessons.map((lesson) => (
-                
-              <NavLink to={`/courses/${course.id}/lessons/${lesson.id}`} style={{textDecoration:'none'}}>
-              <ListGroup.Item action key={lesson.id} style={{margin:'10px', borderRadius: '1em'}}>{lesson.title}</ListGroup.Item>
+              <NavLink to={`/courses/${course.id}/lessons/${lesson.id}?enrollState=${enrollState}`} style={{textDecoration:'none'}}>
+              
+              <ListGroup.Item action key={lesson.id} style={{margin:'10px', borderRadius: '1em'}}>
+                {lesson.title}
+                <LessonBar lesson={lesson} studentId={auth.userId} enroll={enrollState}/>
+                </ListGroup.Item>
               </NavLink>
             ))}
           </ListGroup>

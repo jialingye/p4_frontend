@@ -2,11 +2,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 
-const StudentInput = ({assessment, studentId}) => {
+const StudentInput = ({assessment, studentId, enrollState}) => {
   const [inputState, setInputState]=useState('');
   const [gptState, setGptState]=useState('');
   const [previousState, setPreviousState] = useState(null);
-
+  const isEnrolled = JSON.parse(enrollState)
 
   const onChangeHandler = (e, setValue) => {
     setValue(e.target.value);
@@ -85,7 +85,8 @@ const StudentInput = ({assessment, studentId}) => {
   }
 
   const studentScores = assessment.scores.filter((score) => score.student === studentId);
-  console.log("🥸",studentScores)
+
+  console.log("🥸",isEnrolled)
   const studentAns = studentScores.map((score)=> (
     <div
       key={score.id}
@@ -104,23 +105,23 @@ const StudentInput = ({assessment, studentId}) => {
         <div>
            {studentAns}
         </div>
-        
-        <Form onSubmit = {checkScore}>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label></Form.Label>
-                <Form.Control 
-                as="textarea" 
-                rows={3}
-                value={inputState}
-                onChange = {(e) => onChangeHandler(e, setInputState)} />
-            </Form.Group>
-            <div className="mb-2">
-                <Button variant="warning" size="sm" type = "submit">
-                    AI Score
-                </Button>
-            </div>
-        </Form>
-       
+        {isEnrolled? 
+                (<><Form onSubmit = {checkScore}>
+                  <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                      <Form.Label></Form.Label>
+                      <Form.Control 
+                      as="textarea" 
+                      rows={3}
+                      value={inputState}
+                      onChange = {(e) => onChangeHandler(e, setInputState)} />
+                  </Form.Group>
+                  <div className="mb-2">
+                      <Button variant="warning" size="sm" type = "submit">
+                          AI Score
+                      </Button>
+                  </div>
+              </Form></>):(<div style={{color:'red'}}>Please enroll to answer question</div>)}
+
       
         {gptState? (
         <div style={{backgroundColor:'lightgray', border:'5px lightgray solid', borderRadius:'1em'}}>

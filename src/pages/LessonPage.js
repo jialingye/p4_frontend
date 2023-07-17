@@ -9,50 +9,56 @@ import { AuthContext } from '../context/AuthContext'
 
 
 const LessonPage = () => {
+
     const auth = useContext(AuthContext)
     const tickmark = "\u2611"
     const studentId = auth.userId
     let {courseId, lessonId} = useParams()
+    const enrollState = new URLSearchParams(window.location.search).get('enrollState');
     let [lesson, setLesson] = useState(null)
-    let progress, totalScore,totalValidScore
+    let [progress, setProgress] = useState(0);
+    let [totalScore, setTotalScore]= useState(0);
+    let [totalValidScore, setTotalValidScore]= useState(0);
     
     
     useEffect(()=>{
         getLesson()
-    }, [])
+    }, [lessonId, studentId])
 
     let getLesson = async()=> {
         let response = await fetch(`/courses/${courseId}/lessons/${lessonId}`)
         let data = await response.json();
-        console.log(data)
         setLesson(data)
     }
 
-    if(lesson){
-    let assessLen= lesson.assessments.length
-    let validScoreCount = 0;
-    totalScore = assessLen*10
-    totalValidScore = 0;
+    useEffect(()=>{
+        if(lesson){
+            let assessLen = lesson.assessments.length
+            let validScoreCount = 0;
+            let totalScore = assessLen*10
+            let totalValidScore = 0
 
-    for (const assessment of lesson.assessments){
-      
-        const studentScores = assessment.scores.filter((score)=>score.student===studentId)
-        console.log("😍", studentScores)
-        if (studentScores.length===0) {
-            totalValidScore += 0
-            validScoreCount += 0
-        } else {
-            const validScores= studentScores.filter((score)=>score.score>5);
-            totalValidScore += validScores[0].score
-            validScoreCount += validScores.length;
-        }
-        
-        
-        
-    }
-    progress = assessLen !==0? (validScoreCount/assessLen)*100 : 0;
-    
-    }
+            for (const assessment of lesson.assessments){
+                const studentScores = assessment.scores.filter((score)=>score.student===studentId)
+                if (studentScores.length===0) {
+                    totalValidScore += 0
+                    validScoreCount += 0
+                } else {
+                    const validScores= studentScores.filter((score)=>score.score>5);
+                    totalValidScore += validScores[0].score
+                    validScoreCount += validScores.length;
+                }
+            
+            const progress = assessLen !==0? (validScoreCount/assessLen)*100:0;
+
+            setProgress(progress);
+            setTotalScore(totalScore);
+            setTotalValidScore(totalValidScore)
+
+                }
+            }
+        }, [lesson])
+
 
   return (
     <div>{lesson? (
@@ -77,7 +83,7 @@ const LessonPage = () => {
                             <Accordion.Header>Question {index+1} {assessment.scores.filter((score)=>score.student===studentId)[0]?.score >=5 ? tickmark: <></>}</Accordion.Header>
                             <Accordion.Body> 
                             <div dangerouslySetInnerHTML={{ __html: assessment.question }}></div>
-                                <StudentInput assessment={assessment} studentId={studentId}/>
+                                <StudentInput assessment={assessment} studentId={studentId} enrollState={enrollState}/>
                                 </Accordion.Body>
                             </Accordion.Item>
                             </>

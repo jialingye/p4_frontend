@@ -30,7 +30,6 @@ const CourseAdmin = () => {
     let getCourse = async()=> {
         let response = await fetch(`/courses/${id}`)
         let data = await response.json();
-        console.log(data)
         setCourse(data)
     }
 
