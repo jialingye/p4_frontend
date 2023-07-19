@@ -47,7 +47,7 @@ const CollectionCreated = ({studentId}) => {
     }, [studentId])
 
     let getCollections = async() =>{
-        let response = await fetch(`/collection/${studentId}`)
+        let response = await fetch(`http://127.0.0.1:8000/collection/${studentId}`)
         let data = await response.json()
 
         let created= data.filter((data)=>data.owner === studentId)

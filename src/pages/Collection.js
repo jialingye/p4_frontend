@@ -49,7 +49,7 @@ const Collection = () => {
     }, [])
 
     let getCollections = async() =>{
-        let response = await fetch('/collection/')
+        let response = await fetch('http://127.0.0.1:8000/collection/')
         let data = await response.json()
         console.log('DATA', data)
         setCollections(data)
