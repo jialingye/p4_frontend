@@ -33,7 +33,8 @@ const LessonComp = ({course}) => {
         <Accordion.Body>
             <Button
                 style={{marginBottom:"10px"}}
-                variant="outline-secondary" 
+                variant="outline-success" 
+                className='course-button'
                 size="sm"
                 onClick = {()=>handleEditModalOpen(index)}
                 >
@@ -50,7 +51,8 @@ const LessonComp = ({course}) => {
             )}
                <Button
                 style={{marginBottom:"10px"}}
-                variant="outline-secondary" 
+                variant="outline-success" 
+                className='course-button'
                 size="sm"
                 onClick = {()=>handleAddModalOpen(index)}
                 >

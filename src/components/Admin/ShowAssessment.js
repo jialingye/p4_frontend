@@ -22,6 +22,7 @@ const ShowAssessment = ({course, lesson}) => {
                 <Button
                     style={{marginBottom:"10px"}}
                     variant="outline-secondary" 
+                    className='course-button'
                     size="sm"
                     onClick = {()=>handleEditAssessOpen(index)}
                     >

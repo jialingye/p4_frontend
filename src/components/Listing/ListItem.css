@@ -45,3 +45,16 @@
     color: lightsalmon;
     border-color: lightsalmon;
 }
+
+.list-item-dashboard{
+    background-color: grey;
+    width: 18em;
+    height: 12em;
+    border-radius: 1em;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top: 20px;
+    transition: 0.1s linear;
+    display: flex;
+    flex-direction: column;
+}

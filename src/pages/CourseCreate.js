@@ -104,7 +104,7 @@ const CourseCreate = () => {
                 </div>
             </Form.Group>
             <div className="mb-2">
-                <Button variant="secondary" size="lg" type = "submit">
+                <Button variant="outline-success" className='course-button' size="lg" type = "submit">
                     Create Course
                 </Button>
             </div>

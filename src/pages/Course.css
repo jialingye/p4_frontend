@@ -39,6 +39,41 @@
     background-color: white;
     height: 80vh;
     border: '1px solid yellow'
+}
 
 
+.collection-card {
+    height:auto;
+    border:1px solid #98bf64;
+    color: #98bf64;
+    padding: 10px;
+}
+
+.collection-card:hover{
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.grid-container{
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+}
+
+.grid-column{
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+}
+
+.grid-column > div { /* change div to reference your elements you put in <Masonry> */
+    background: grey;
+    margin-bottom: 30px;
+  }
+
+.dash-nav:hover{
+    border-color: #98bf64;
+    background-color: #98bf64;
+    color:white;
 }

@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import { Button, Container } from 'react-bootstrap'
+import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
 import { NavLink, useParams } from 'react-router-dom'
 import EditCourse from '../components/Admin/EditCourse'
 import AddLesson from '../components/Admin/AddLesson'
 import LessonComp from '../components/Admin/LessonComp'
 import './Course.css'
+
 
 const CourseAdmin = () => {
 
@@ -36,30 +37,37 @@ const CourseAdmin = () => {
   return (
    <div>{course? (
     <Container>
-        <div style={{marginTop:'30px', marginBottom:'30px'}}>
-            <h2 style={{color:'white', fontFamily: "'Roboto'"}}>
-                {course.title}
-            </h2>
-        </div>
-
-        <div>
-            <Button
-            style={{marginBottom:"10px", marginRight:'20px'}}
-            variant="outline-warning" 
-            size="lg"
-            onClick = {handleEditModalOpen}
-            >
-                    Edit Course
-            </Button>
-            <Button
-            style={{marginBottom:"10px"}}
-            variant="outline-primary" 
-            size="lg"
-            onClick = {handleAddLessonOpen}
-            >
-                    Add Lesson
-            </Button>
-        </div>
+        <Row>
+            <Col lg={10}>
+                <div style={{ marginBottom:'30px'}}>
+                <h2 style={{color:'white', fontFamily: "'Roboto'"}}>
+                    {course.title}
+                </h2>
+                <Badge bg="dark" style={{color:'#98bf64', border:'2px solid #98bf64', borderRadius:'1em'}}>{course.tag}</Badge>
+                </div>
+            </Col>
+            <Col lg={2} style={{display:'flex', flexDirection:'column', justifyContent:'space-around'}}>
+                <Button
+                style={{marginBottom:"10px"}}
+                variant="outline-warning" 
+                size="lg"
+                onClick = {handleEditModalOpen}
+                >
+                        Edit Course
+                </Button>
+                <Button
+                style={{marginBottom:"10px"}}
+                variant="outline-success" 
+                className='course-button'
+                size="lg"
+                onClick = {handleAddLessonOpen}
+                >
+                        Add Lesson
+                </Button>
+            
+            </Col>
+        </Row>
+       
         <div className="course-background">
             <div dangerouslySetInnerHTML={{ __html: course.description }}></div>
         </div>

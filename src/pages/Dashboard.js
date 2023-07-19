@@ -1,29 +1,79 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
+import { AuthContext } from '../context/AuthContext';
+import EnrolledCourses from '../components/Dash/EnrolledCourses';
+import CreatedCourse from '../components/Dash/CreatedCourse';
+import CollectionCreated from '../components/Dash/CollectionCreated';
+import CollectionSaved from '../components/Dash/CollectionSaved';
+
 
 const Dashboard = () => {
+
+const auth = useContext(AuthContext)
+
+const [course, setCourse] = useState(null)
+
+const [activeState, setActiveState] = useState('enrolled')
+const handleSectionChange = (section)=>{
+  setActiveState(section)
+}
+
+useEffect(()=> {
+  if(auth.userId){
+    const courseFetch = async() =>{
+      try{
+        const options = {
+          method:'GET',
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+
+        const response = await fetch('/courses/', options);
+        if(response.ok){
+          const data = await response.json();
+          setCourse(data)
+        } else {
+          console.log('error')
+        }
+      }catch(error){
+        console.log(error);
+      }
+    }
+    courseFetch();
+  }
+}, [auth.userId])
+
   return (
-    <Container>
-    <Nav justify variant="tabs" defaultActiveKey="/home">
+    <Container fluid style={{width:'90%'}} >
+    <Nav justify variant="tabs" defaultActiveKey="/home" >
       <Nav.Item>
-        <Nav.Link eventKey="link-0" style={{color:'#98bf64'}}>Created</Nav.Link>
+        <Nav.Link className='dash-nav' eventKey="link-0" style={{color:'#98bf64', border:'1px solid #98bf64'}} onClick={() => handleSectionChange('enrolled')}>Enrolled</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-1" style={{color:'#98bf64'}}>Enrolled</Nav.Link>
+        <Nav.Link eventKey="link-1" style={{color:'#98bf64' , border:'1px solid #98bf64'}} onClick={() => handleSectionChange('created')}>Created</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-2" style={{color:'#98bf64'}}>Collection</Nav.Link>
+        <Nav.Link eventKey="link-2" style={{color:'#98bf64' , border:'1px solid #98bf64'}} onClick={() => handleSectionChange('collection-created')}>Collection Created</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="disabled"  style={{color:'#98bf64'}}>
-          Dash
+        <Nav.Link eventKey="disabled"  style={{color:'#98bf64', border:'1px solid #98bf64'}} onClick={() => handleSectionChange('saved')}>
+          Collection Saved
         </Nav.Link>
       </Nav.Item>
     </Nav>
-    <div className='dashboard-outline' style={{borderLeft:'5px solid #98bf64',borderRight:'5px solid #98bf64',borderBottom:'5px solid #98bf64',borderBottomLeftRadius:'1em', borderBottomRightRadius:'1em'}}>
-Hello
-    </div>
+    {course? (
+        <div className='dashboard-outline' style={{border:'1px solid #98bf64',borderBottomLeftRadius:'1em', borderBottomRightRadius:'1em'}}>
+          {activeState==='enrolled' && <EnrolledCourses course={course} studentId={auth.userId}/>}
+          {activeState==='created' && <CreatedCourse course={course} studentId={auth.userId}/>}
+          {activeState==='collection-created' && <CollectionCreated studentId={auth.userId}/>}
+          {activeState==='saved' && <CollectionSaved studentId={auth.userId}/>}
+        </div>
+    ):(
+      <>Loading</>
+    )}
+ 
     </Container>
   );
 }

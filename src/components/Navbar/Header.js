@@ -23,10 +23,18 @@ const Header = () => {
           <Nav className="me-auto">
             <Nav.Link className="nav-link-hover" href="/">Courses</Nav.Link>
             <Nav.Link className="nav-link-hover" href="/collections">Collection</Nav.Link>
-            <Nav.Link className="nav-link-hover" href="/courses/new">Create Lessons</Nav.Link>
+            {auth.isLoggedIn? (
+              <Nav.Link className="nav-link-hover" href="/courses/new">Create Lessons</Nav.Link>
+            ):(
+              <></>
+            )}
           </Nav>
           <Nav className="justify-content-end" style={{border:'2px solid #98bf64', width:'100px', borderRadius:'2em'}}>
-            <Nav.Link>Log In</Nav.Link>
+            {auth.isLoggedIn? (
+              <Nav.Link>User {auth.userId}</Nav.Link>
+            ):(
+              <></>
+            )}
             <NavDropdown className="dropdownTitle"  id="navbarScrollingDropdown" >
             {auth.isLoggedIn? (
               <>
