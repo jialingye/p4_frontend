@@ -107,6 +107,7 @@ const AddLesson = ({show,handleClose,course}) => {
                     value={materialState}
                     onChange={setMaterialState}
                     modules={{ toolbar: toolbarOptions }}
+                    className='quill-container'
                     />
             </Form.Group>
             <Button variant="warning" size="lg" type='submit'>

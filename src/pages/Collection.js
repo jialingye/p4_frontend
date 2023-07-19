@@ -60,7 +60,15 @@ const Collection = () => {
    
                     <Card className = "collection-card" style={{backgroundColor:'#eef3f32b'}} >
                         <Card.Body>
+                          <Row>
+                            <Col lg={10}>
                             <Card.Title>{collection.title}</Card.Title>
+                            </Col>
+                            <Col lg={1}>
+                            <button  style={{ border:'none', backgroundColor:'transparent', color:'#98bf64'}} onClick={(event)=>handleAddCollection(event, collection.id)}>+</button>
+                            </Col>
+                          </Row>
+                            
                             <Card.Text>
                             {collection.description}
                             </Card.Text>
@@ -72,9 +80,7 @@ const Collection = () => {
                                 </NavLink>
                             ))}                        
                         </ListGroup>
-                    <Card.Footer>
-                    <button  style={{ border:'none', backgroundColor:'white', color:'#98bf64'}} onClick={(event)=>handleAddCollection(event, collection.id)}>+</button>
-                    </Card.Footer>
+      
                 </Card>
     ))
 }

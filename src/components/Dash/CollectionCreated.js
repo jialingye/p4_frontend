@@ -57,38 +57,29 @@ const CollectionCreated = ({studentId}) => {
 
     if(collections){
          collectionsData = collections.map((collection, index) => (
-   
-                    <Card className = "collection-card list-item-dashboard" style={{backgroundColor:'#eef3f32b', width:'350px'}} >
-                        <Card.Body>
-                            <Card.Title>{collection.title}</Card.Title>
-                            <Card.Text>
-                            {collection.description}
-                            </Card.Text>
-                        </Card.Body>
-                        <ListGroup className="list-group-flush" style={{padding:'10px'}} >
-                            {collection.course.map((course,index)=>(
-                              
-                           
-                                
-                                        <ListGroup.Item style = {{backgroundColor:'#eef3f32b',color:'#98bf64',border:'1px solid #98bf64',borderRadius:'1em', marginTop:'10px'}}key={index}>
-                                        <Row>
-                                        <Col lg={10}>
-                                        <NavLink to={`/courses/${course.id}` } style={{textDecoration:"none"}} >
-                                           <div style={{color:'#98bf64'}}> {course.title}</div>
-                                            </NavLink>
-                                            </Col>
-                                            <Col lg={2}>
-                                            <button  style={{ border:'none', backgroundColor:'white', color:'#98bf64'}} onClick={(event)=>handleRemoveCourse(event, course.id, collection.id)}>X</button>
-                                            </Col>
-                                            </Row>
-                                            </ListGroup.Item>
-                                
-                               
-                                
+              <Card key={index} className = "collection-card list-item-dashboard" style={{backgroundColor:'#eef3f32b', width:'350px'}} >
+              <Card.Body>
+                  <Card.Title>{collection.title}</Card.Title>
+                  <Card.Text>
+                  {collection.description}
+                  </Card.Text>
+              </Card.Body>
+              <ListGroup className="list-group-flush" style={{padding:'10px'}} >
+                  {collection.course.map((course,index)=>(
+                              <ListGroup.Item style = {{backgroundColor:'#eef3f32b',color:'#98bf64',border:'1px solid #98bf64',borderRadius:'1em', marginTop:'10px'}}key={index}>
+                              <Row>
+                              <Col lg={10}>
+                              <NavLink to={`/courses/${course.id}` } style={{textDecoration:"none"}} >
+                                  <div style={{color:'#98bf64'}}> {course.title}</div>
+                                  </NavLink>
+                                  </Col>
+                                  <Col lg={2}>
+                                  <button  style={{ border:'none', backgroundColor:'white', color:'#98bf64'}} onClick={(event)=>handleRemoveCourse(event, course.id, collection.id)}>X</button>
+                                  </Col>
+                                  </Row>
+                                  </ListGroup.Item>
                             ))}                        
                         </ListGroup>
-                    <Card.Footer style={{backgroundColor:'white'}}>
-                    </Card.Footer>
                 </Card>
     ))
 }
@@ -97,9 +88,9 @@ const CollectionCreated = ({studentId}) => {
     <div style={{margin:'20px'}}>
         <Masonry
         breakpointCols={{
-          default: 3,
-          1100: 3,
-          700: 2,
+          default: 4,
+          1600: 3,
+          1000: 2,
           500: 1,
         }}
         className="grid-container"

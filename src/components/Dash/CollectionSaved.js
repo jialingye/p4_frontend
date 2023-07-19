@@ -57,10 +57,17 @@ const CollectionSaved = ({studentId}) => {
     if(collections){
          collectionsData = collections.map((collection, index) => (
    
-                    <Card className = "collection-card list-item-dashboard" style={{backgroundColor:'#eef3f32b'}} >
+                    <Card className = "collection-card list-item-dashboard" style={{backgroundColor:'#eef3f32b', width:'350px'}} >
                         <Card.Body>
+                          <Row>
+                            <Col lg={10}>
                             <Card.Title>{collection.title}</Card.Title>
-                            
+                            </Col>
+                            <Col lg={1}>
+                            <button  style={{ border:'none', backgroundColor:'white', color:'#98bf64', margin:'0px', padding:'0px'}} onClick={(event)=>handleRemoveCollection(event, collection.id)}>X</button>
+                            </Col>
+                          </Row>
+                           
                             <Card.Text>
                             {collection.description}
                             </Card.Text>
@@ -73,9 +80,9 @@ const CollectionSaved = ({studentId}) => {
                                 </NavLink>
                             ))}                        
                         </ListGroup>
-                    <Card.Footer style={{backgroundColor:'white'}}>
-                    <button  style={{ border:'none', backgroundColor:'white', color:'#98bf64'}} onClick={(event)=>handleRemoveCollection(event, collection.id)}>X</button>
-                    </Card.Footer>
+
+                   
+          
                 </Card>
     ))
 }
@@ -85,8 +92,8 @@ const CollectionSaved = ({studentId}) => {
         <Masonry
         breakpointCols={{
           default: 4,
-          1100: 3,
-          700: 2,
+          1600: 3,
+          1000: 2,
           500: 1,
         }}
         className="grid-container"

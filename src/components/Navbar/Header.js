@@ -24,16 +24,16 @@ const Header = () => {
             <Nav.Link className="nav-link-hover" href="/">Courses</Nav.Link>
             <Nav.Link className="nav-link-hover" href="/collections">Collection</Nav.Link>
             {auth.isLoggedIn? (
-              <Nav.Link className="nav-link-hover" href="/courses/new">Create Lessons</Nav.Link>
+              <Nav.Link className="nav-link-hover" href="/courses/new">Create Course</Nav.Link>
             ):(
               <></>
             )}
           </Nav>
-          <Nav className="justify-content-end" style={{border:'2px solid #98bf64', width:'100px', borderRadius:'2em'}}>
+          <Nav className="justify-content-end" style={{border:'2px solid #98bf64', minWidth:'100px', borderRadius:'2em'}}>
             {auth.isLoggedIn? (
-              <Nav.Link>User {auth.userId}</Nav.Link>
+              <Nav.Link href="/dashboard">Dashboard</Nav.Link>
             ):(
-              <></>
+              <Nav.Link onClick = {handleLogInModalOpen}>Log In</Nav.Link>
             )}
             <NavDropdown className="dropdownTitle"  id="navbarScrollingDropdown" >
             {auth.isLoggedIn? (

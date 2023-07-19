@@ -79,15 +79,12 @@ const CourseCreate = () => {
                     <option value="">Choose an option</option>
                     <option value="Development">Development</option>
                     <option value="Language">Language</option>
-                    <option value="Finance & Accounting">Finance & Accounting</option>
-                    <option value="Software">Software</option>
-                    <option value="Personal Development">Personal Development</option>
-                    <option value="Design">Design</option>
+                    <option value="Finance & Bussiness">Finance & Bussiness</option>
+                    <option value="Software & Technology">Software & Technology</option>
+                    <option value="Art & Design">Art & Design</option>
                     <option value="Lifestyle">Lifestyle</option>
-                    <option value="Photography & Video">Photography & Video</option>
                     <option value="Health & Fitness">Health & Fitness</option>
-                    <option value="Music">Music</option>
-                    <option value="Teaching & Academy">Teaching & Academy</option>
+                    <option value="Academy">Academy</option>
                 </Form.Control>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

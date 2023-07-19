@@ -26,12 +26,12 @@
     border-color: lightcyan;
 }
 
-.Teaching {
+.Academy {
     color:lightpink;
     border-color:lightpink
 }
 
-.Photography {
+.Finance {
     color: lightsteelblue;
     border-color: lightgray;
 }
@@ -42,8 +42,18 @@
 }
 
 .Health {
-    color: lightsalmon;
-    border-color: lightsalmon;
+    color: rgb(210, 158, 244);
+    border-color: rgb(210, 158, 244);
+}
+
+.Art {
+    color: rgb(163, 224, 233);
+    border-color: rgb(163, 224, 233);
+}
+
+.Development {
+    color: rgb(239, 223, 102);
+    border-color: rgb(239, 223, 102);
 }
 
 .list-item-dashboard{

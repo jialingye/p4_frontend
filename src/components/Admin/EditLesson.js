@@ -44,6 +44,7 @@ const EditLesson = ({show,handleClose,lesson}) => {
             title: titleState,
             material: materialState,
         }
+        console.log(updatedLesson)
 
         const options = {
             method: "PUT",
@@ -54,8 +55,8 @@ const EditLesson = ({show,handleClose,lesson}) => {
         };
 
     
-       const responseData = await fetch(`https://aicademybackend.onrender.com/lessons/${lesson.id}/update/`, options);
-        //const responseData = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/update/`, options);
+       //const responseData = await fetch(`https://aicademybackend.onrender.com/lessons/${lesson.id}/update/`, options);
+        const responseData = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/update/`, options);
 
         const updatedLessonData = await responseData.json();
         console.log(updatedLessonData);
@@ -116,6 +117,7 @@ const EditLesson = ({show,handleClose,lesson}) => {
                 value={materialState}
                 onChange={setMaterialState}
                 modules={{ toolbar: toolbarOptions }}
+                className='quill-container'
                 />
         </Form.Group>
         <Button variant="warning" size="lg" type='submit'>
