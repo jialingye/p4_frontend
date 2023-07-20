@@ -57,7 +57,7 @@ const CollectionSaved = ({studentId}) => {
     if(collections){
          collectionsData = collections.map((collection, index) => (
    
-                    <Card className = "collection-card list-item-dashboard" style={{backgroundColor:'#eef3f32b', width:'350px'}} >
+                    <Card key={index} className = "collection-card list-item-dashboard" style={{backgroundColor:'#eef3f32b', width:'350px'}} >
                         <Card.Body>
                           <Row>
                             <Col lg={10}>

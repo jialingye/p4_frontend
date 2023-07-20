@@ -3,10 +3,11 @@ import Container from 'react-bootstrap/esm/Container'
 import { NavLink, useParams } from 'react-router-dom'
 import Offcanvas from 'react-bootstrap/Offcanvas';  
 import './Course.css'
-import { Badge, Button, Col, ListGroup, Row } from 'react-bootstrap'
+import { Badge, Button, Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
 import { AuthContext } from '../context/AuthContext'
 import LessonBar from '../components/Listing/LessonBar';
 import SaveButton from '../components/Listing/SaveButton';
+import CourseProgress from '../components/Listing/CourseProgress';
 
 
 
@@ -17,12 +18,13 @@ const CoursePage = () => {
     let [course, setCourse] = useState(null)
     let [enrollState, setEnrollState] = useState (false)
     let [errorState, setErrorState] = useState(null)
-    let [progress, setProgress] = useState(0);
-    
+   
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
 
     useEffect(()=>{
         getCourse()
@@ -39,7 +41,9 @@ const CoursePage = () => {
         // setEnrollCount(data.enrollment_count())
     }
 
+    
 
+    
     let handleEnroll = async(event)=>{
       event.preventDefault();
         const asso= {
@@ -145,14 +149,21 @@ const CoursePage = () => {
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title style={{color:'#98bf64'}}>Lessons</Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body>
+              <Offcanvas.Body style={{marginTop:'-15px'}}>
                 <ListGroup >
+                <div>
+                <CourseProgress course={course} studentId={auth.userId} enroll={enrollState}/>
+                </div>
                   {course.lessons.map((lesson) => (
                     <NavLink to={`/courses/${course.id}/lessons/${lesson.id}?enrollState=${enrollState}`} style={{textDecoration:'none'}}>
                     
                     <ListGroup.Item action key={lesson.id} style={{margin:'10px', borderRadius: '1em'}}>
                       {lesson.title}
-                      <LessonBar lesson={lesson} studentId={auth.userId} enroll={enrollState}/>
+                      <LessonBar 
+                        lesson={lesson} 
+                        studentId={auth.userId} 
+                        enroll={enrollState}
+                        />
                       </ListGroup.Item>
                     </NavLink>
                   ))}

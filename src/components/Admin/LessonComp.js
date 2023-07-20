@@ -11,21 +11,16 @@ const LessonComp = ({course}) => {
    // Edit Course State
    const [editModalState, setEditModal] = useState(null);
    // Set State Function
-   const handleEditModalOpen = (index) => 
-   {console.log('Opening edit modal for index:', index);
-    setEditModal(index)};
+   const handleEditModalOpen = (index) => setEditModal(index);
    const handleEditModalClose = () => setEditModal(null);
 
     // Edit Course State
     const [addModalState, setAddModal] = useState(null);
     // Set State Function
-    const handleAddModalOpen = (index) => 
-    {console.log('Opening edit modal for index:', index);
-    setAddModal(index)};
+    const handleAddModalOpen = (index) => setAddModal(index);
     const handleAddModalClose = () => setAddModal(null);
   
    const lesson = course.lessons.map((lesson, index) =>{
-    console.log('Rendering lesson:', index);
     return( 
    <Accordion key={index}>
         <Accordion.Item eventKey={index.toString()} >

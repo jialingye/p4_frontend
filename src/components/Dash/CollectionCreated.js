@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react'
 import { Card, Col, ListGroup, Row } from 'react-bootstrap'
 import Masonry from 'react-masonry-css'
 import { NavLink } from 'react-router-dom'
+import EditCollection from './EditCollection'
 
 
 const CollectionCreated = ({studentId}) => {
     let [collections, setCollections] = useState([])
     let [errorState, setErrorState]=useState(null)
-    let collectionsData
+     // Edit Course State
+    const [editModalState, setEditModal] = useState(null);
+    // Set State Function
+    const handleEditModalOpen = (index) => setEditModal(index);
+    const handleEditModalClose = () => setEditModal(null);
+      let collectionsData
 
     const handleRemoveCourse= async(event, courseId, collectionId)=>{
         event.preventDefault();
@@ -47,7 +53,7 @@ const CollectionCreated = ({studentId}) => {
     }, [studentId])
 
     let getCollections = async() =>{
-        let response = await fetch(`http://127.0.0.1:8000/collection/${studentId}`)
+        let response = await fetch(`http://127.0.0.1:8000/collection/`)
         let data = await response.json()
 
         let created= data.filter((data)=>data.owner === studentId)
@@ -59,7 +65,22 @@ const CollectionCreated = ({studentId}) => {
          collectionsData = collections.map((collection, index) => (
               <Card key={index} className = "collection-card list-item-dashboard" style={{backgroundColor:'#eef3f32b', width:'350px'}} >
               <Card.Body>
-                  <Card.Title>{collection.title}</Card.Title>
+                    <Row>
+                        <Col lg={10}>
+                            <Card.Title>{collection.title}</Card.Title>
+                        </Col>
+                        <Col lg={1}>
+                            <button onClick = {()=>handleEditModalOpen(index)} style={{ border:'none', backgroundColor:'white', color:'#98bf64', margin:'0px', padding:'0px'}} >Edit</button>
+                            {editModalState=== index && (
+                                  <>
+                                  <EditCollection
+                                  show = {editModalState===index}
+                                  handleClose = {handleEditModalClose}
+                                  collection ={collection}/>
+                                  </>
+                              )}
+                        </Col>
+                      </Row>
                   <Card.Text>
                   {collection.description}
                   </Card.Text>
