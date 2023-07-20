@@ -22,7 +22,8 @@ const CourseList = () => {
     }, [])
 
     let getCourses = async() =>{
-        let response = await fetch('http://127.0.0.1:8000/courses/')
+        let response = await fetch('https://aicademybackend.onrender.com/courses/')
+        //let response = await fetch('http://127.0.0.1:8000/courses/')
         let data = await response.json()
         console.log('DATA', data)
         setCourses(data)

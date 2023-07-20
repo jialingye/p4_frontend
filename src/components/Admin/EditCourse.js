@@ -56,8 +56,8 @@ const EditCourse = ({show,handleClose,course}) => {
         };
 
     
-       //const responseData = await fetch(`http://localhost:4000/user/${profile._id}`, options);
-        const responseData = await fetch(`http://127.0.0.1:8000/courses/${course.id}/update/`, options);
+         const responseData = await fetch(`https://aicademybackend.onrender.com/courses/${course.id}/update/`, options);
+        //const responseData = await fetch(`http://127.0.0.1:8000/courses/${course.id}/update/`, options);
 
         const updatedCourseData = await responseData.json();
         console.log(updatedCourseData);
@@ -76,7 +76,8 @@ const EditCourse = ({show,handleClose,course}) => {
           "Content-Type": "application/json",
       }
       };
-      const response = await fetch(`http://127.0.0.1:8000/courses/${course.id}/delete/`, options);
+      const response = await fetch(`https://aicademybackend.onrender.com/courses/${course.id}/delete/`, options);
+      //const response = await fetch(`http://127.0.0.1:8000/courses/${course.id}/delete/`, options);
 
       if(response.status === 204){
           console.log(response.status);

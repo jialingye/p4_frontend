@@ -44,7 +44,6 @@ const LessonBar = ({lesson, studentId, enroll}) => {
             <Col lg={10}>
                 <div style={{marginTop:'6px'}}></div>
                 <ProgressBar variant="success" now={progress}/>
-       
             </Col> 
         </Row>
         

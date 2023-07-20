@@ -26,7 +26,8 @@ const LessonPage = () => {
     }, [lessonId, studentId])
 
     let getLesson = async()=> {
-        let response = await fetch(`http://127.0.0.1:8000/courses/${courseId}/lessons/${lessonId}`)
+        //let response = await fetch(`http://127.0.0.1:8000/courses/${courseId}/lessons/${lessonId}`)
+        let response = await fetch(`https://aicademybackend.onrender.com/courses/${courseId}/lessons/${lessonId}`)
         let data = await response.json();
         setLesson(data)
     }

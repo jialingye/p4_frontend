@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
-import { NavLink } from 'react-router-dom';
 import EditLesson from './EditLesson';
 import AddAssessment from './AddAssessment';
 import ShowAssessment from './ShowAssessment';

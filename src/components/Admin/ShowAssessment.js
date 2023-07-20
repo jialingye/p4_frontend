@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import EditAssessment from './EditAssessment';

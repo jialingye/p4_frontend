@@ -51,7 +51,8 @@ const CourseCreate = () => {
             },
             body: JSON.stringify(createCourse)
         };
-        const response = await fetch(`http://127.0.0.1:8000/courses/new/`, options);
+        const response = await fetch(`https://aicademybackend.onrender.com/courses/new/`, options);
+        //const response = await fetch(`http://127.0.0.1:8000/courses/new/`, options);
         const data= await response.json();
         console.log(data)
         navigate(`/courses/${data.id}/edit`)

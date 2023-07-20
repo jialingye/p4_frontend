@@ -36,9 +36,13 @@ const LogInModal = ({show, handleClose}) => {
                 },
                 body: JSON.stringify(logIn)
             }
+            // const responseData = await fetch(
+            //     "https://aicademybackend.onrender.com/token/", options
+            // );
             const responseData = await fetch(
-                "http://127.0.0.1:8000/token/", options
-            );
+              "http://127.0.0.1:8000/token/", options
+          );
+
 
             const LoginObj = await responseData.json();
             console.log("😛",jwt_decode(LoginObj.access))
