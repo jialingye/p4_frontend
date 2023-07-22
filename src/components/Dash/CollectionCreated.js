@@ -59,7 +59,7 @@ const CollectionCreated = ({studentId}) => {
         let data = await response.json()
 
         let created= data.filter((data)=>data.owner === studentId)
-        console.log('DATA', created)
+        //console.log('DATA', created)
         setCollections(created)
     }
 
@@ -72,7 +72,7 @@ const CollectionCreated = ({studentId}) => {
                             <Card.Title>{collection.title}</Card.Title>
                         </Col>
                         <Col lg={1}>
-                            <button onClick = {()=>handleEditModalOpen(index)} style={{ border:'none', backgroundColor:'white', color:'#98bf64', margin:'0px', padding:'0px'}} >Edit</button>
+                            <button onClick = {()=>handleEditModalOpen(index)} style={{ border:'none', backgroundColor:'transparent', color:'#98bf64', margin:'0px', padding:'0px'}} >Edit</button>
                             {editModalState=== index && (
                                   <>
                                   <EditCollection
@@ -97,7 +97,7 @@ const CollectionCreated = ({studentId}) => {
                                   </NavLink>
                                   </Col>
                                   <Col lg={2}>
-                                  <button  style={{ border:'none', backgroundColor:'white', color:'#98bf64'}} onClick={(event)=>handleRemoveCourse(event, course.id, collection.id)}>X</button>
+                                  <button  style={{ border:'none', backgroundColor:'transparent', color:'#98bf64'}} onClick={(event)=>handleRemoveCourse(event, course.id, collection.id)}>X</button>
                                   </Col>
                                   </Row>
                                   </ListGroup.Item>

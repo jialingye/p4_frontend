@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -68,11 +68,12 @@ const AddLesson = ({show,handleClose,course}) => {
 
 
   return (
-    <div>
+    <Container>
        <Modal  fullscreen={fullscreen} show={show} onHide={handleClose}>
         <Modal.Header closeButton onClick={()=>handleClose()}>
           <Modal.Title>Add Lesson</Modal.Title>
         </Modal.Header>
+        <div style={{width:'70%', overflow:'auto'}}>
         <Modal.Body>
           <Form onSubmit ={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -115,10 +116,10 @@ const AddLesson = ({show,handleClose,course}) => {
           </Button> 
             </Form>
         </Modal.Body>
-        <Modal.Footer>
-        </Modal.Footer>
+        </div>
+     
       </Modal>
-    </div>
+    </Container>
   )
 }
 

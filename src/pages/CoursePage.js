@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/esm/Container'
 import { NavLink, useParams } from 'react-router-dom'
 import Offcanvas from 'react-bootstrap/Offcanvas';  
 import './Course.css'
-import { Badge, Button, Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap'
+import { Badge, Button, Col, ListGroup, Row } from 'react-bootstrap'
 import { AuthContext } from '../context/AuthContext'
 import LessonBar from '../components/Listing/LessonBar';
 import SaveButton from '../components/Listing/SaveButton';
@@ -35,7 +35,7 @@ const CoursePage = () => {
         let response = await fetch(`https://aicademybackend.onrender.com/courses/${id}/`)
         //let response = await fetch(`http://127.0.0.1:8000/courses/${id}/`)
         let data = await response.json();
-        console.log(data)
+        //console.log(data)
         setCourse(data)
         setEnrollState(data.students.some((student)=>student===auth.userId))
         // setProgress(data.get_course_progress(auth.userId))

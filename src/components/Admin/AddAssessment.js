@@ -52,6 +52,7 @@ const AddAssessment = ({show, handleClose, lesson}) => {
                     theme = "snow"
                     value={questionState}
                     onChange={setQuestion}
+                    className='quill-container'
                     />
             </Form.Group>
             <Button variant="warning" size="lg" type='submit'>

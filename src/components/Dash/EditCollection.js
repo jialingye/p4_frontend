@@ -31,14 +31,14 @@ const EditCollection = ({show, handleClose, collection}) => {
         //const responseData = await fetch(`http://127.0.0.1:8000/collection/${collection.id}/update/`, options);
 
         const updatedLessonData = await responseData.json();
-        console.log(updatedLessonData);
+        //console.log(updatedLessonData);
         handleClose();
         window.location.reload();
     }
 
     const onDeleteHandler = async (event) => {
         event.preventDefault();
-        console.log("Delete review with ", collection.id)
+        //console.log("Delete review with ", collection.id)
     
         try {
         const options = {

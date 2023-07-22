@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
-import { NavLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import EditCourse from '../components/Admin/EditCourse'
 import AddLesson from '../components/Admin/AddLesson'
 import LessonComp from '../components/Admin/LessonComp'

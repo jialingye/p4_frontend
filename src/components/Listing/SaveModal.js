@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 
 const SaveModal = (props) => {
+    const likeIcon = '\u2665';
     const {course, studentId, show, handleClose, save} = props
     const [titleState, setTitle] = useState('')
     const [collections, setCollections] = useState(null)
@@ -71,26 +72,32 @@ const SaveModal = (props) => {
         //const responseData = await fetch(`http://127.0.0.1:8000/collection/new/`, options);
 
         const addCollectionData = await responseData.json();
-        console.log(addCollectionData);
+        //console.log(addCollectionData);
         handleClose();
         save(true);
     }
 
-    useEffect(()=>{
-        const getCollections = async()=>{
-            let response = await fetch(`/collection/${studentId}`)
-            let data = await response.json();
-            console.log(data)
-            setCollections(data)
-        }
-        getCollections()
-    }, [studentId])
+        useEffect(()=>{
+            const getCollections = async()=>{
+                let response = await fetch(`https://aicademybackend.onrender.com/collection/`)
+                //let response = await fetch(`http://127.0.0.1:8000/collection/`)
+                let data = await response.json();
+                //console.log("😾",data)
+                const ownerCollection = data.filter((item)=>item.owner===studentId)
+                setCollections(ownerCollection)
+            }
+            getCollections()
+        }, [course, studentId])
     
 
     if(collections){
          studentCollection = collections.map((collection, index)=>(
             <Col xs={12} md={12} key={index}>
-                <Button className="course-button" variant="outline-success" style={{width:'100%', borderColor:'#98bf64', marginBottom:'15px'}} onClick={(event)=>handleAddCourse(event, collection.id)}>{collection.title}</Button>
+                <Button className="course-button" variant="outline-success" style={{width:'100%', borderColor:'#98bf64', marginBottom:'15px'}} onClick={(event)=>handleAddCourse(event, collection.id)}>
+                {collection.course.some((item)=>item.id === course.id)? (
+                  <>{likeIcon}</>):(<></>)}
+                   {collection.title}
+                </Button>
             </Col>
          ))
     }

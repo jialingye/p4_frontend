@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Container } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -56,11 +57,11 @@ const EditCourse = ({show,handleClose,course}) => {
         };
 
     
-         const responseData = await fetch(`https://aicademybackend.onrender.com/courses/${course.id}/update/`, options);
-        //const responseData = await fetch(`http://127.0.0.1:8000/courses/${course.id}/update/`, options);
+         //const responseData = await fetch(`https://aicademybackend.onrender.com/courses/${course.id}/update/`, options);
+        const responseData = await fetch(`http://127.0.0.1:8000/courses/${course.id}/update/`, options);
 
         const updatedCourseData = await responseData.json();
-        console.log(updatedCourseData);
+        //console.log(updatedCourseData);
         handleClose();
         window.location.reload();
     }
@@ -76,8 +77,8 @@ const EditCourse = ({show,handleClose,course}) => {
           "Content-Type": "application/json",
       }
       };
-      const response = await fetch(`https://aicademybackend.onrender.com/courses/${course.id}/delete/`, options);
-      //const response = await fetch(`http://127.0.0.1:8000/courses/${course.id}/delete/`, options);
+      //const response = await fetch(`https://aicademybackend.onrender.com/courses/${course.id}/delete/`, options);
+      const response = await fetch(`http://127.0.0.1:8000/courses/${course.id}/delete/`, options);
 
       if(response.status === 204){
           console.log(response.status);
@@ -96,11 +97,12 @@ const EditCourse = ({show,handleClose,course}) => {
 
 
   return (
-    <div>
+    <Container>
        <Modal  fullscreen={fullscreen} show={show} onHide={handleClose}>
         <Modal.Header closeButton onClick={()=>handleClose()}>
           <Modal.Title>Edit Course</Modal.Title>
         </Modal.Header>
+        <div style={{width:'70%', overflow:'auto'}}>
         <Modal.Body>
           <Form onSubmit ={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -142,14 +144,15 @@ const EditCourse = ({show,handleClose,course}) => {
                     className='quill-container'
                     />
             </Form.Group>
-            <Button variant="warning" size="lg" type='submit'>  Update Profile </Button> 
+            <Button variant="warning" size="lg" type='submit'>  Update Course </Button> 
             <Button variant="danger" size="lg" type='submit' onClick ={onDeleteHandler}>Delete</Button> 
             </Form>
         </Modal.Body>
+        </div>
         <Modal.Footer>
         </Modal.Footer>
       </Modal>
-    </div>
+    </Container>
   )
 }
 

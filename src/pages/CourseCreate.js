@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/esm/Container';
@@ -6,6 +6,7 @@ import ReactQuill, {Quill} from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { useNavigate } from 'react-router-dom';
 import './Course.css'
+import { AuthContext } from '../context/AuthContext';
 
 const CourseCreate = () => {
     const ColorPicker = Quill.import('ui/color-picker');
@@ -27,6 +28,7 @@ const CourseCreate = () => {
         ['clean']
       ];
 
+    const auth=useContext(AuthContext)
     const navigate= useNavigate();
     const [titleState, setTitleState] = useState("")
     const [tagState, setTagState] = useState("")
@@ -38,7 +40,7 @@ const CourseCreate = () => {
     const handleSubmit = async(event) => {
         event.preventDefault();
         const createCourse= {
-            instructor: 1,
+            instructor: auth.userId,
             title:titleState,
             tag:tagState,
             description: descriptionState,

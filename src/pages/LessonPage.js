@@ -7,7 +7,6 @@ import './Course.css'
 import { AuthContext } from '../context/AuthContext'
 
 
-
 const LessonPage = () => {
 
     const auth = useContext(AuthContext)
@@ -19,7 +18,7 @@ const LessonPage = () => {
     let [progress, setProgress] = useState(0);
     let [totalScore, setTotalScore]= useState(0);
     let [totalValidScore, setTotalValidScore]= useState(0);
-    
+
     
     useEffect(()=>{
         getLesson()
@@ -64,12 +63,21 @@ const LessonPage = () => {
   return (
     <div>{lesson? (
             <Container fluid style={{width:'90%'}}>
-                
                 <Row style={{marginTop:'30px'}}>
                     <Col lg={8} sm={8} style={{backgroundColor:'white', borderRadius:'1em', marginTop:'5px', paddingBottom:'30px'}}>
-                        <h1 style={{color:'Black', fontFamily: "'Roboto'", marginTop:'10px', marginButtom:'10px'}}>{lesson.title}</h1>
+                        <Row>
+                            <Col lg={11}>
+                            <h1 style={{color:'Black', fontFamily: "'Roboto'", marginTop:'10px', marginButtom:'10px'}}>{lesson.title}</h1>
+                            </Col>
+                            <Col lg={1}>
+                                <div style={{marginTop:'10px', marginRight:'10px'}}></div>
+                            <Button className='course-button' variant='outline-success' size="lg" type='submit'>
+                                <NavLink to={`/courses/${courseId}`} style={{textDecoration:'none', color:'#98bf64'}}>Back</NavLink></Button>
+                            </Col>
+                        </Row>
+                        
                         <div className='lesson-material' style={{boxShadow:"0 0 5px #98bf64"}}>
-                            <div dangerouslySetInnerHTML={{ __html: lesson.material }}></div>
+                            <div style={{maxWidth:'100%', overflow:'hidden'}} dangerouslySetInnerHTML={{ __html: lesson.material }}></div>
                         </div>
                     </Col>
                     <Col lg={4} sm={4}>

@@ -53,7 +53,7 @@ const CollectionSaved = ({studentId}) => {
         let response = await fetch(`https://aicademybackend.onrender.com/collection/${studentId}`)
         //let response = await fetch(`http://127.0.0.1:8000/collection/${studentId}`)
         let data = await response.json()
-        console.log('DATA', data)
+        //console.log('DATA', data)
         setCollections(data)
     }
 
@@ -67,7 +67,7 @@ const CollectionSaved = ({studentId}) => {
                             <Card.Title>{collection.title}</Card.Title>
                             </Col>
                             <Col lg={1}>
-                            <button  style={{ border:'none', backgroundColor:'white', color:'#98bf64', margin:'0px', padding:'0px'}} onClick={(event)=>handleRemoveCollection(event, collection.id)}>X</button>
+                            <button  style={{ border:'none', backgroundColor:'transparent', color:'#98bf64', margin:'0px', padding:'0px'}} onClick={(event)=>handleRemoveCollection(event, collection.id)}>X</button>
                             </Col>
                           </Row>
                            

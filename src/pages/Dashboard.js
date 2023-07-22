@@ -64,7 +64,7 @@ useEffect(()=> {
       </Nav.Item>
     </Nav>
     {course? (
-        <div className='dashboard-outline' style={{border:'1px solid #98bf64',borderBottomLeftRadius:'1em', borderBottomRightRadius:'1em', height:'auto'}}>
+        <div className='dashboard-outline' style={{border:'1px solid #98bf64',borderBottomLeftRadius:'0.5em', borderBottomRightRadius:'0.5em', height:'auto'}}>
           {activeState==='enrolled' && <EnrolledCourses course={course} studentId={auth.userId}/>}
           {activeState==='created' && <CreatedCourse course={course} studentId={auth.userId}/>}
           {activeState==='collection-created' && <CollectionCreated studentId={auth.userId}/>}

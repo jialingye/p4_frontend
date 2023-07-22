@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import SaveModal from './SaveModal';
 
 
@@ -6,7 +6,7 @@ const SaveButton = ({course, studentId}) => {
     const likeIcon = '\u2665';
     const outlineLikeIcon = '\u2661'
     const [savedState, setSavedState] = useState(null);
-    console.log('save', savedState)
+    //console.log('save', savedState)
 
     // Edit Course State
     const [editModalState, setEditModal] = useState(false);

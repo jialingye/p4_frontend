@@ -12,7 +12,6 @@ const ShowAssessment = ({course, lesson}) => {
     
 
     const assessment = lesson.assessments.map((assessment, index) =>{
-        console.log('Rendering lesson:', index);
         return (
         <Accordion key={index}>
             <Accordion.Item eventKey={index.toString()} >

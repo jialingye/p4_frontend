@@ -16,11 +16,13 @@ import PrivateRoute from './utility/PrivateRoute';
 import { AuthContext } from './context/AuthContext';
 import { useEffect, useState } from 'react';
 import Collection from './pages/Collection';
+import Home from './pages/Home';
 
 
 let routes = (
   <Routes>
-    <Route path="/" exact={true} element={<CourseList/>}/>
+    <Route path="/" exact={true} element={<Home/>}/>
+    <Route path="/courses" exact={true} element={<CourseList/>}/>
     <Route path="/courses/:id" element={<CoursePage/>}/>
     <Route path="/courses/:courseId/lessons/:lessonId" element={<LessonPage/>}/>
     <Route path="/courses/new" element={<CourseCreate/>}/>

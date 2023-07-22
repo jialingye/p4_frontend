@@ -59,7 +59,7 @@ const EditLesson = ({show,handleClose,lesson}) => {
         //const responseData = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/update/`, options);
 
         const updatedLessonData = await responseData.json();
-        console.log(updatedLessonData);
+        //console.log(updatedLessonData);
         handleClose();
         window.location.reload();
     }

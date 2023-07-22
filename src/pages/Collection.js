@@ -53,14 +53,14 @@ const Collection = () => {
         let response = await fetch('https://aicademybackend.onrender.com/collection/')
         //let response = await fetch('http://127.0.0.1:8000/collection/')
         let data = await response.json()
-        console.log('DATA', data)
+        //console.log('DATA', data)
         setCollections(data)
     }
 
     if(collections){
          collectionsData = collections.map((collection, index) => (
    
-                    <Card className = "collection-card" style={{backgroundColor:'#eef3f32b'}} >
+                    <Card key = {index} className = "collection-card" style={{backgroundColor:'#eef3f32b'}} >
                         <Card.Body>
                           <Row>
                             <Col lg={10}>
@@ -78,7 +78,7 @@ const Collection = () => {
                         <ListGroup className="list-group-flush" style={{padding:'10px'}} >
                             {collection.course.map((course,index)=>(
                                 <NavLink to={`/courses/${course.id}` } style={{textDecoration:"none"}} >
-                                        <ListGroup.Item style = {{backgroundColor:'#eef3f32b',color:'#98bf64',border:'1px solid #98bf64',borderRadius:'1em', marginTop:'10px'}}key={index}>{course.title}</ListGroup.Item>
+                                        <ListGroup.Item style = {{backgroundColor:'#eef3f32b',color:'#98bf64',border:'1px solid #98bf64',borderRadius:'0.5em', marginTop:'10px'}}key={index}>{course.title}</ListGroup.Item>
                                 </NavLink>
                             ))}                        
                         </ListGroup>

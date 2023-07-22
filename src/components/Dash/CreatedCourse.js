@@ -8,7 +8,8 @@ const CreatedCourse = ({course, studentId}) => {
     let courseCreated
     let displayCourse
     useEffect(()=>{
-         courseCreated = course.filter((course)=>course.students.some((student)=>student === studentId))
+         courseCreated = course.filter((course)=>course.instructor === studentId)
+
             if (courseCreated.length !== 0) {
                 setCourseState(courseCreated)
             }
@@ -43,7 +44,7 @@ const CreatedCourse = ({course, studentId}) => {
         courseCreatedState ? (
         <Row>{displayCourse}</Row>
     ):(
-     <div style={{display:'flex', flexDirection:'column'}}>
+     <div style={{display:'flex', flexDirection:'column',justifyContent:'center', alignItems:'center'}}>
         <h1 style={{textAlign:'center',color:'#98bf64', marginTop:'300px'}}>
         NO COURSE WAS CREATED</h1>
         <NavLink to={'/courses/new'} style={{textDecoration:'none', color:'#98bf64',border:'1px solid #98bf64', borderRadius:'1em', padding:'5px'}}>CREATE A COURSE</NavLink>

@@ -16,9 +16,10 @@ const CourseProgress = ({course, studentId, enroll}) => {
      }
     }
 
-    let totalValidCount = 0
-    let totalValidScore = 0
+
     useEffect(()=>{
+        let totalValidCount = 0
+        let totalValidScore = 0
         course?.lessons.forEach((lesson)=>{
             let validCount = 0
             let validScore = 0
@@ -38,9 +39,10 @@ const CourseProgress = ({course, studentId, enroll}) => {
         }
         )
         setTotalValidCountState(totalValidCount)
+        console.log('💀',totalValidCount)
         setTotalValidScoreState(totalValidScore)
         setProgress((totalValidCount/totalAssessments)*100)
-    }, [course, studentId])
+    }, [])
 
   return (
     enroll && <div>

@@ -12,7 +12,7 @@ const LogInModal = ({show, handleClose}) => {
     console.log(auth)
 
     const handleInstructorLogin = (event) => {
-        setUsername('instructor')
+        setUsername('student2')
         setPassword('password123!')
       }
     
@@ -45,7 +45,7 @@ const LogInModal = ({show, handleClose}) => {
 
 
             const LoginObj = await responseData.json();
-            console.log("😛",jwt_decode(LoginObj.access))
+            //console.log("😛",jwt_decode(LoginObj.access))
 
             if(responseData.ok){
              const decodeJWT = jwt_decode(LoginObj.access)
@@ -94,10 +94,10 @@ const LogInModal = ({show, handleClose}) => {
             </Form.Group>
             <div style={{display:"flex", flexDirection:"column", justifyContent:"center"}}>
             <Button variant="warning" size="lg" style = {{margin:"10px"}} onClick={() => handleStudentLogin()} >
-            Demo Student
+            Demo Student1
           </Button> 
             <Button variant="warning" size="lg" style = {{margin:"10px"}} onClick={() => handleInstructorLogin()}>
-            Demo Instructor
+            Demo Student2
           </Button> 
             <Button variant="warning" size="lg" style = {{margin:"10px"}} type='submit'>
             Log In
