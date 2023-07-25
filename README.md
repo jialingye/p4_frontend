@@ -2,23 +2,23 @@
 [AIcademy](https://aicademyfrontend.onrender.com/) AIcademy is an innovative online learning platform that empowers students to explore the exciting world of Artificial Intelligence. This repository contains the frontend codebase for the AIcademy web application.
 
 ## Features
-* User-friendly Interface: AIcademy offers a visually appealing and intuitive interface, making it easy for users to navigate through courses and assessments.
+* **User-friendly Interface:** AIcademy offers a visually appealing and intuitive interface, making it easy for users to navigate through courses and assessments.
 
-* AI-Powered Grading: Our proprietary AI technology provides instant feedback and detailed explanations for assessments, ensuring an engaging and interactive learning experience.
+* **AI-Powered Grading:** Our proprietary AI technology provides instant feedback and detailed explanations for assessments, ensuring an engaging and interactive learning experience.
 
-* Course Creation and Management: Instructors can easily create and manage courses, lessons, and assessments to share knowledge and expertise.
+* **Course Creation and Management:** Instructors can easily create and manage courses, lessons, and assessments to share knowledge and expertise.
 
-* Progress Tracking: Students can monitor their course progress and lesson completion with dynamic progress bars.
+* **Progress Tracking:** Students can monitor their course progress and lesson completion with dynamic progress bars.
 
-* Course Collections: Users can save their favorite courses in personalized collections, fostering collaboration and knowledge sharing.
+* **Course Collections:** Users can save their favorite courses in personalized collections, fostering collaboration and knowledge sharing.
 
 ## Technologies Used
-* React.js: Frontend library for building interactive user interfaces.
-* React Bootstrap: Provides pre-styled components for faster development.
-* Fetch API: Allows making HTTP requests to the backend API for data retrieval and updates.
-* React Router: Facilitates client-side routing for a seamless user experience.
-* React Quill: A powerful rich text editor component for user-friendly content creation.
-* Masonry: Enables dynamic grid layout for a visually appealing presentation of course collections.
+* **React.js:** Frontend library for building interactive user interfaces.
+* **React Bootstrap:** Provides pre-styled components for faster development.
+* **Fetch API:** Allows making HTTP requests to the backend API for data retrieval and updates.
+* **React Router:** Facilitates client-side routing for a seamless user experience.
+* **React Quill:** A powerful rich text editor component for user-friendly content creation.
+* **Masonry:** Enables dynamic grid layout for a visually appealing presentation of course collections.
 
 ### Home Page
 * Listed all courses
