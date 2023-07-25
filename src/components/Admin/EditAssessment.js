@@ -23,10 +23,8 @@ const EditAssessment = ({show,handleClose,assessment}) => {
             body: JSON.stringify(updatedAssessment),
         };
 
-    
-       //const responseData = await fetch(`http://localhost:4000/user/${profile._id}`, options);
-        const responseData = await fetch(`https://aicademybackend.onrender.com/assessments/${assessment.id}/update/`, options);
-        //const responseData = await fetch(`http://127.0.0.1:8000/assessments/${assessment.id}/update/`, options);
+        //const responseData = await fetch(`https://aicademybackend.onrender.com/assessments/${assessment.id}/update/`, options);
+        const responseData = await fetch(`http://127.0.0.1:8000/assessments/${assessment.id}/update/`, options);
 
         const updatedAssessData = await responseData.json();
         console.log(updatedAssessData);
@@ -44,8 +42,8 @@ const EditAssessment = ({show,handleClose,assessment}) => {
             "Content-Type": "application/json",
         }
         };
-        const response = await fetch(`https://aicademybackend.onrender.com/assessments/${assessment.id}/delete/`, options);
-        //const response = await fetch(`http://127.0.0.1:8000/assessments/${assessment.id}/delete/`, options);
+        //const response = await fetch(`https://aicademybackend.onrender.com/assessments/${assessment.id}/delete/`, options);
+        const response = await fetch(`http://127.0.0.1:8000/assessments/${assessment.id}/delete/`, options);
 
         if(response.status === 204){
             console.log(response.status);

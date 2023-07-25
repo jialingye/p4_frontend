@@ -12,7 +12,6 @@ import Header from './components/Navbar/Header';
 import CourseCreate from './pages/CourseCreate';
 import CourseAdmin from './pages/CourseAdmin';
 import Dashboard from './pages/Dashboard';
-import PrivateRoute from './utility/PrivateRoute';
 import { AuthContext } from './context/AuthContext';
 import { useEffect, useState } from 'react';
 import Collection from './pages/Collection';

@@ -55,8 +55,8 @@ const EditLesson = ({show,handleClose,lesson}) => {
         };
 
     
-        const responseData = await fetch(`https://aicademybackend.onrender.com/lessons/${lesson.id}/update/`, options);
-        //const responseData = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/update/`, options);
+        //const responseData = await fetch(`https://aicademybackend.onrender.com/lessons/${lesson.id}/update/`, options);
+        const responseData = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/update/`, options);
 
         const updatedLessonData = await responseData.json();
         //console.log(updatedLessonData);
@@ -75,8 +75,8 @@ const EditLesson = ({show,handleClose,lesson}) => {
             "Content-Type": "application/json",
         }
         };
-        //const response = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/delete/`, options);
-        const response = await fetch(`https://aicademybackend.onrender.com/lessons/${lesson.id}/delete/`, options);
+        const response = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/delete/`, options);
+        //const response = await fetch(`https://aicademybackend.onrender.com/lessons/${lesson.id}/delete/`, options);
         if(response.status === 204){
             console.log(response.status);
             window.location.reload();

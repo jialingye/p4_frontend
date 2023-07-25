@@ -32,14 +32,13 @@ const CoursePage = () => {
     }, [id, auth.userId])
 
     let getCourse = async()=> {
-        let response = await fetch(`https://aicademybackend.onrender.com/courses/${id}/`)
-        //let response = await fetch(`http://127.0.0.1:8000/courses/${id}/`)
+        //let response = await fetch(`https://aicademybackend.onrender.com/courses/${id}/`)
+        let response = await fetch(`http://127.0.0.1:8000/courses/${id}/`)
         let data = await response.json();
         //console.log(data)
         setCourse(data)
         setEnrollState(data.students.some((student)=>student===auth.userId))
-        // setProgress(data.get_course_progress(auth.userId))
-        // setEnrollCount(data.enrollment_count())
+
     }
 
     
@@ -60,8 +59,8 @@ const CoursePage = () => {
             body: JSON.stringify(asso)
         };
         
-        const response = await fetch(`https://aicademybackend.onrender.com/courses/${id}/students/${auth.userId}/`, options);
-        //const response = await fetch(`http://127.0.0.1:8000/courses/${id}/students/${auth.userId}/`, options);
+        //const response = await fetch(`https://aicademybackend.onrender.com/courses/${id}/students/${auth.userId}/`, options);
+        const response = await fetch(`http://127.0.0.1:8000/courses/${id}/students/${auth.userId}/`, options);
         const data= await response.json();
         
         if(response.status !== 200){
@@ -96,8 +95,8 @@ const CoursePage = () => {
             },
             body: JSON.stringify(asso)
         };
-        const response = await fetch(`https://aicademybackend.onrender.com/courses/${id}/students/${auth.userId}/`, options);
-        //const response = await fetch(`http://127.0.0.1:8000/courses/${id}/students/${auth.userId}/`, options);
+        //const response = await fetch(`https://aicademybackend.onrender.com/courses/${id}/students/${auth.userId}/`, options);
+        const response = await fetch(`http://127.0.0.1:8000/courses/${id}/students/${auth.userId}/`, options);
         const data= await response.json();
         console.log(data)
         setCourse((prevCourse) => ({

@@ -38,7 +38,7 @@ const SignUpModal = ({show, handleClose}) => {
             body: JSON.stringify(signUpData),
           };
           // const responseData = await fetch(
-          //   "http://localhost:4000/register/", options
+          //   "https://aicademybackend.onrender.com/register/", options
           // );
           const responseData = await fetch(
             "http://127.0.0.1:8000/register/", options

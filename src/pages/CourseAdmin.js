@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import EditCourse from '../components/Admin/EditCourse'
 import AddLesson from '../components/Admin/AddLesson'
 import LessonComp from '../components/Admin/LessonComp'
@@ -29,8 +29,8 @@ const CourseAdmin = () => {
     }, [])
 
     let getCourse = async()=> {
-        let response = await fetch(`https://aicademybackend.onrender.com/courses/${id}`)
-        //let response = await fetch(`http://127.0.0.1:8000/courses/${id}`)
+        //let response = await fetch(`https://aicademybackend.onrender.com/courses/${id}`)
+        let response = await fetch(`http://127.0.0.1:8000/courses/${id}`)
         let data = await response.json();
         setCourse(data)
     }
@@ -41,8 +41,11 @@ const CourseAdmin = () => {
         <Row>
             <Col lg={10}>
                 <div style={{ marginBottom:'30px'}}>
+                
                 <h2 style={{color:'white', fontFamily: "'Roboto'"}}>
+                    <NavLink to={`/courses/${course.id}`} style={{textDecoration:'none',color:'white'}}>
                     {course.title}
+                    </NavLink>
                 </h2>
                 <Badge bg="dark" style={{color:'#98bf64', border:'2px solid #98bf64', borderRadius:'1em'}}>{course.tag}</Badge>
                 </div>
