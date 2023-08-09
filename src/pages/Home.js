@@ -8,7 +8,7 @@ import Image3 from '../components/Home/Image3.jpg'
 import { Image } from 'react-bootstrap';
 
 const Home = () => {
-    let [courses, setCourses] = useState([])
+    let [courses, setCourses] = useState(null)
     let [selectTag, setSelectTag] = useState(null)
     let [titleSearch, setTitleSearch] = useState('')
     
@@ -40,6 +40,7 @@ const Home = () => {
         course.title.toLowerCase().includes(titleSearch.toLowerCase()))
 
          coursesData = searchResult.map((course, index) => (
+
         <ListItem key= {index} course={course}/>
     ))
 }
@@ -73,11 +74,17 @@ const Home = () => {
       </Carousel.Item>
     </Carousel>   
     </Container>
-    <Container > 
+    {courses ? (
+      <Container > 
         <Row xs={1} md={4} style={{display:'flex', flexWrap:'wrap'}}>
         {coursesData}
         </Row>
     </Container>
+    ):(
+      <h1 style={{color:'white', textAlign:'center'}}>Loading...</h1>
+    )
+  }
+    
     </Container>
   )
 }

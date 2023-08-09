@@ -1,5 +1,5 @@
 # AIcademy
-[AIcademy](https://aicademyfrontend.onrender.com/) is an innovative online learning platform that empowers students to explore the exciting world of Artificial Intelligence. This repository contains the frontend codebase for the AIcademy web application.
+[AIcademy](https://aicademy-5d534.web.app/) is an innovative online learning platform that empowers students to explore the exciting world of Artificial Intelligence. This repository contains the frontend codebase for the AIcademy web application.
 
 # Backend
 [Backend Github](https://github.com/jialingye/AIcademy)

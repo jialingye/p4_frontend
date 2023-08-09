@@ -5,7 +5,7 @@ import { Row } from 'react-bootstrap'
 import SecNav from '../components/Navbar/SecNav'
 
 const CourseList = () => {
-    let [courses, setCourses] = useState([])
+    let [courses, setCourses] = useState(null)
     let [selectTag, setSelectTag] = useState(null)
     let [titleSearch, setTitleSearch] = useState('')
     
@@ -43,9 +43,14 @@ const CourseList = () => {
   return (
     <Container fluid style={{marginTop:'-35px'}}>   
         <SecNav  onTagSelect={handleTagSelect} onTitleSearch={handleTitleSearch}/>
-        <Row xs={1} md={4} style={{display:'flex', flexWrap:'wrap'}}>
-        {coursesData}
-        </Row>
+        {courses ? (
+            <Row xs={1} md={4} style={{display:'flex', flexWrap:'wrap'}}>
+            {coursesData}
+            </Row>
+        ):(
+            <h1 style={{color:'white', textAlign:'center'}}>Loading...</h1>
+        )}
+       
     </Container>
   )
 }

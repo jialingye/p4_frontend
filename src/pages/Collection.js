@@ -7,7 +7,7 @@ import Masonry from 'react-masonry-css'
 import { AuthContext } from '../context/AuthContext';
 
 const Collection = () => {
-    let [collections, setCollections] = useState([])
+    let [collections, setCollections] = useState(null)
     let [errorState, setErrorState]= useState(null)
     let collectionsData
     const auth=useContext(AuthContext);
@@ -89,19 +89,25 @@ const Collection = () => {
 
   return (
     <Container>
-        <Masonry
-        breakpointCols={{
-          default: 4,
-          1100: 3,
-          700: 2,
-          500: 1,
-        }}
-        className="grid-container"
-        columnClassName="grid-column"
-      >
-        {collectionsData}
-        </Masonry>
-    </Container>
+    {collections ? (
+     
+      <Masonry
+      breakpointCols={{
+        default: 4,
+        1100: 3,
+        700: 2,
+        500: 1,
+      }}
+      className="grid-container"
+      columnClassName="grid-column"
+    >
+      {collectionsData}
+      </Masonry>
+ 
+    ):(
+      <h1 style={{color:'white', textAlign:'center'}}>Loading...</h1>
+    )}
+     </Container>
   )
 }
 
