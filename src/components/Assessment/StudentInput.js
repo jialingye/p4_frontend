@@ -25,8 +25,8 @@ const StudentInput = ({assessment, studentId, enrollState}) => {
         },
         body: JSON.stringify(createAICheck)
     };
-    //const response = await fetch(`https://aicademybackend.onrender.com/aiscore/`, options);
-    const response = await fetch(`http://127.0.0.1:8000/aiscore/`, options);
+    const response = await fetch(`https://aicademybackend.onrender.com/aiscore/`, options);
+    //const response = await fetch(`http://127.0.0.1:8000/aiscore/`, options);
     const data= await response.json();
     setGptState(data)
     
@@ -64,8 +64,8 @@ const StudentInput = ({assessment, studentId, enrollState}) => {
     const studentScores = assessment.scores.filter((score) => score.student === studentId);
 
     if(studentScores.length===0) {
-        //const response = await fetch(`https://aicademybackend.onrender.com/assessments/${assessment.id}/score/`, options);
-        const response = await fetch(`http://127.0.0.1:8000/assessments/${assessment.id}/score/`, options);
+        const response = await fetch(`https://aicademybackend.onrender.com/assessments/${assessment.id}/score/`, options);
+        //const response = await fetch(`http://127.0.0.1:8000/assessments/${assessment.id}/score/`, options);
         const data= await response.json();
         console.log(data)
         window.location.reload();
@@ -78,8 +78,8 @@ const StudentInput = ({assessment, studentId, enrollState}) => {
             },
             body: JSON.stringify(updateInput),
           };
-          //const response = await fetch(`https://aicademybackend.onrender.com/score/${previousScoreId}/update/`, updateOptions);
-          const response = await fetch(`http://127.0.0.1:8000/score/${previousScoreId}/update/`, updateOptions);
+          const response = await fetch(`https://aicademybackend.onrender.com/score/${previousScoreId}/update/`, updateOptions);
+          //const response = await fetch(`http://127.0.0.1:8000/score/${previousScoreId}/update/`, updateOptions);
             const data = await response.json();
             console.log(data);
             window.location.reload();

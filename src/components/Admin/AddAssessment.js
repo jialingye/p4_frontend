@@ -23,8 +23,8 @@ const AddAssessment = ({show, handleClose, lesson}) => {
 
         console.log(lesson.id, addQuestion)
 
-        //const responseData = await fetch(`https://aicademybackend.onrender.com/lessons/${lesson.id}/assessments/new/`, options);
-        const responseData = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/assessments/new/`, options);
+        const responseData = await fetch(`https://aicademybackend.onrender.com/lessons/${lesson.id}/assessments/new/`, options);
+        //const responseData = await fetch(`http://127.0.0.1:8000/lessons/${lesson.id}/assessments/new/`, options);
 
         const addQuestionData = await responseData.json();
         console.log(addQuestionData);

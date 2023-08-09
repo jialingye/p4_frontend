@@ -29,8 +29,8 @@ useEffect(()=> {
             "Content-Type": "application/json",
           },
         };
-        //const response = await fetch('https://aicademybackend.onrender.com/courses/', options);
-        const response = await fetch('http://127.0.0.1:8000/courses/', options);
+        const response = await fetch('https://aicademybackend.onrender.com/courses/', options);
+        //const response = await fetch('http://127.0.0.1:8000/courses/', options);
         if(response.ok){
           const data = await response.json();
           setCourse(data)

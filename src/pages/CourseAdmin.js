@@ -29,8 +29,8 @@ const CourseAdmin = () => {
     }, [])
 
     let getCourse = async()=> {
-        //let response = await fetch(`https://aicademybackend.onrender.com/courses/${id}`)
-        let response = await fetch(`http://127.0.0.1:8000/courses/${id}`)
+        let response = await fetch(`https://aicademybackend.onrender.com/courses/${id}`)
+        //let response = await fetch(`http://127.0.0.1:8000/courses/${id}`)
         let data = await response.json();
         setCourse(data)
     }

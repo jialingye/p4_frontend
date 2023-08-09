@@ -27,8 +27,8 @@ const Collection = () => {
               },
               body: JSON.stringify(asso)
           };
-          //const response = await fetch(`https://aicademybackend.onrender.com/collection/${collectionId}/user/${studentId}/`, options);
-          const response = await fetch(`http://127.0.0.1:8000/collection/${collectionId}/user/${studentId}/`, options);
+          const response = await fetch(`https://aicademybackend.onrender.com/collection/${collectionId}/user/${studentId}/`, options);
+          //const response = await fetch(`http://127.0.0.1:8000/collection/${collectionId}/user/${studentId}/`, options);
           const data= await response.json();
           
           if(response.status !== 200){
@@ -50,8 +50,8 @@ const Collection = () => {
     }, [])
 
     let getCollections = async() =>{
-        //let response = await fetch('https://aicademybackend.onrender.com/collection/')
-        let response = await fetch('http://127.0.0.1:8000/collection/')
+        let response = await fetch('https://aicademybackend.onrender.com/collection/')
+        //let response = await fetch('http://127.0.0.1:8000/collection/')
         let data = await response.json()
         //console.log('DATA', data)
         setCollections(data)

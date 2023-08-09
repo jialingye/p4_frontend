@@ -30,8 +30,8 @@ const SaveModal = (props) => {
               body: JSON.stringify(asso)
           };
 
-          //const response = await fetch(`https://aicademybackend.onrender.com/collection/${collectionId}/courses/${course.id}/`, options);
-          const response = await fetch(`http://127.0.0.1:8000/collection/${collectionId}/courses/${course.id}/`, options);
+          const response = await fetch(`https://aicademybackend.onrender.com/collection/${collectionId}/courses/${course.id}/`, options);
+          //const response = await fetch(`http://127.0.0.1:8000/collection/${collectionId}/courses/${course.id}/`, options);
           const data= await response.json();
           
           if(response.status !== 200){
@@ -68,8 +68,8 @@ const SaveModal = (props) => {
         };
 
         
-         //const responseData = await fetch(`https://aicademybackend.onrender.com/collection/new/`, options);
-        const responseData = await fetch(`http://127.0.0.1:8000/collection/new/`, options);
+         const responseData = await fetch(`https://aicademybackend.onrender.com/collection/new/`, options);
+        //const responseData = await fetch(`http://127.0.0.1:8000/collection/new/`, options);
 
         const addCollectionData = await responseData.json();
         //console.log(addCollectionData);
@@ -79,8 +79,8 @@ const SaveModal = (props) => {
 
         useEffect(()=>{
             const getCollections = async()=>{
-                //let response = await fetch(`https://aicademybackend.onrender.com/collection/`)
-                let response = await fetch(`http://127.0.0.1:8000/collection/`)
+                let response = await fetch(`https://aicademybackend.onrender.com/collection/`)
+                //let response = await fetch(`http://127.0.0.1:8000/collection/`)
                 let data = await response.json();
                 //console.log("😾",data)
                 const ownerCollection = data.filter((item)=>item.owner===studentId)
