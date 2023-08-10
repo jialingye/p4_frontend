@@ -10,3 +10,9 @@
     background-color: #353535;
     color:'#98bf64'
 }
+
+@media (max-width: 1317px){
+    .second-nav .nav-link {
+        font-size:0.8rem;
+    }
+}
